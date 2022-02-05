@@ -8,9 +8,12 @@ const filterDateFormat = require('./src/utils/filters/dateFormat.js')
 const outAllDraft = filterOutByMeta('draft')
 const byOrder = cardinalSortByMeta('order')
 
+const card = require('./src/utils/shortcodes/card.js')
+
 module.exports = eleventyConfig => {
   eleventyConfig.addPassthroughCopy({ './src/css/': '/assets/' })
   eleventyConfig.addWatchTarget('./src/css/')
+  eleventyConfig.addWatchTarget('./src/utils/')
   eleventyConfig.addWatchTarget('./tailwind.config.js')
 
   // https://github.com/11ty/eleventy/issues/768
@@ -38,6 +41,7 @@ module.exports = eleventyConfig => {
   eleventyConfig.addFilter(...filterDateFormat)
 
   eleventyConfig.addShortcode('version', () => String(new Date()))
+  eleventyConfig.addPairedShortcode("card", card);
 
   eleventyConfig.addTransform('htmlmin', (content, outputPath) => {
     if (

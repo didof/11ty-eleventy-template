@@ -1,56 +1,26 @@
 <style>
-    article {
-        width: 30rem;
-        padding: 1rem;
-        background: black;
-        border: 1px solid #20c20e;
-        margin: 10px auto;
-        border-radius: 10px;
-        box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
-    }
-
-    details {
-        margin-bottom: 1rem;
-    }
-
-    summary {
-        cursor: pointer;
-
-    }
-
     summary:focus {
         outline: 2px solid #0d3233;
         outline-offset: 0.3rem;
-    }
-
-    .output {
-        min-height: 10rem;
-        background: black;
-        border: 1px solid #20c20e;
-        border-radius: 10px;
-        margin: 1rem 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
     {{css | safe}}
 </style>
 
 <article>
-<details {% if open %}open{% endif%}>
-<summary>{{ title }}</summary>
-{{ description | safe }}
+<details {% if open %}open{% endif%} class="w-full bg-white rounded-md shadow-lg py-4 px-8">
+<summary class="text-xl cursor-pointer">{{ title }}</summary>
+<p>{{ description | safe }}</p>
 
-{{ date | dateFormat }}
+<span>{{ date | dateFormat }}</span>
 
-<div class="output">
+<div class="w-11/12 min-h-[10rem] border rounded-lg shadow-sm flex justify-center items-center m-4">
 {{ output | safe }}
 </div>
 
 {% if html.length %}
 <details>
-<summary>HTML</summary>
+<summary class="cursor-pointer">HTML</summary>
 {% highlight "html" %}
 {{ html | safe }}
 {% endhighlight %}
@@ -59,7 +29,7 @@
 
 {% if css.length %}
 <details>
-<summary>CSS</summary>
+<summary class="cursor-pointer">CSS</summary>
 {% highlight "css" %}
 {{ css | safe }}
 {% endhighlight %}
@@ -68,15 +38,17 @@
 
 {% if js.length %}
 <details>
-<summary>JS</summary>
+<summary class="cursor-pointer">JS</summary>
 {% highlight "js" %}
 {{ js | safe }}
 {% endhighlight %}
 </details>
 {% endif %}
 
-</details>
-
+{% if codepen %}
 {% postToCodepen title, slug, css, html %}
+{% endif %}
+
+</article>
 
 {# https://www.npmjs.com/package/@11tyrocks/eleventy-plugin-open-in-codepen #}
