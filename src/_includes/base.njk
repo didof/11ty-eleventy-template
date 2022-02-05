@@ -13,11 +13,7 @@
         {% block head %}{% endblock %}
     </head>
     <body>
-        <header>
-            <h1>{{ title }}</h1>
-
-            {% include "components/nav.njk" %}
-        </header>
+        {% include "components/header.njk" %}
 
         <main class="max-w-lg mx-auto">
             {% block component %}
@@ -25,5 +21,6 @@
             {% endblock %}
         </main>
 
+        {% include "components/footer.njk" %}
     </body>
 </html>

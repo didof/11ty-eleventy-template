@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf public",
-    "serve:tailwind": "tailwindcss -i src/css/_main.css -o public/assets/tailwind.css --watch",
+    "serve:tailwind": "tailwindcss -i src/css/_main.css -o public/assets/tailwind.css -c ./tailwind.config.js --watch",
     "serve:webpack": "webpack --mode development --watch",
     "serve:eleventy": "ELEVENTY_ENV=development eleventy --serve",
     "serve": "npm-run-all clean --parallel serve:*",
@@ -22,6 +22,7 @@
     "@11ty/eleventy-plugin-rss": "^1.1.2",
     "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
     "@11tyrocks/eleventy-plugin-open-in-codepen": "^1.0.0",
+    "@tailwindcss/forms": "^0.4.0",
     "autoprefixer": "^10.4.2",
     "axios": "^0.21.4",
     "css-loader": "^6.6.0",
