@@ -2,6 +2,7 @@ const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
 const openInCodepen = require('@11tyrocks/eleventy-plugin-open-in-codepen')
 const pluginRss = require('@11ty/eleventy-plugin-rss')
 
+const htmlmin = require('html-minifier')
 const filterDateFormat = require('./src/utils/filters/dateFormat.js')
 
 const outAllDraft = filterOutByMeta('draft')
@@ -37,6 +38,23 @@ module.exports = eleventyConfig => {
   eleventyConfig.addFilter(...filterDateFormat)
 
   eleventyConfig.addShortcode('version', () => String(new Date()))
+
+  eleventyConfig.addTransform('htmlmin', (content, outputPath) => {
+    if (
+      process.env.ELEVENTY_ENV === 'production' &&
+      outputPath &&
+      outputPath.endsWith('.html')
+    ) {
+      console.info(`[11ty] Minifying ${outputPath}`)
+      return htmlmin.minify(content, {
+        useShortDoctype: true,
+        removeComments: true,
+        collapseWhitespace: true,
+      })
+    }
+
+    return content
+  })
 
   return {
     dir: {
