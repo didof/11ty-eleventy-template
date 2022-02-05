@@ -1,25 +1,11 @@
 ---
-title: Hello World
+title: 11ty didof
 layout: base.njk
 templateEngineOverride: njk, md
 ---
 
-## Collections
+# Welcome to 11ty Didof
 
-Here follows a collection of pages:
+This is a very early wip.
 
-{% for page in collections.pages %}
-- [{{ page.data.title }}]({{ page.url }})
-{%- endfor %}
-
-{% for link in collections.nav %}
-<li>
-    <a href="{{ link.url }}">{{ link.data.title }}</a>
-</li>
-{%- endfor %}
-
-
-### Snippets
-{% for snippet in collections.snippets %}
-{{ snippet.templateContent | safe }}
-{%- endfor %}
+Please check the [demo](/demo)

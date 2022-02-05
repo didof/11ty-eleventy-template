@@ -31,7 +31,8 @@ I just found out of this!
 .card {
     width: 7rem;
     padding: 1rem;
-    background: skyblue;
+    background: white;
+    color: black;
     border-radius: 10px;
     box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
