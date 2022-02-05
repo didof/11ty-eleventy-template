@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf public",
+    "serve:tailwind": "tailwindcss -i src/css/_main.css -o public/assets/tailwind.css --watch",
     "serve:webpack": "webpack --mode development --watch",
     "serve:eleventy": "ELEVENTY_ENV=development eleventy --serve",
     "serve": "npm-run-all clean --parallel serve:*",

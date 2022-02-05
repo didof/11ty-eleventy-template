@@ -10,9 +10,7 @@ const byOrder = cardinalSortByMeta('order')
 module.exports = eleventyConfig => {
   eleventyConfig.addPassthroughCopy({ './src/css/': '/assets/' })
   eleventyConfig.addWatchTarget('./src/css/')
-
   eleventyConfig.addWatchTarget('./tailwind.config.js')
-  eleventyConfig.addWatchTarget('./src/css/main.css')
 
   // https://github.com/11ty/eleventy/issues/768
   // https://github.com/gfscott/eleventy-plugin-embed-twitter

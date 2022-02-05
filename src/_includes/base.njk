@@ -6,10 +6,10 @@
         <title>{{ title }}</title>
 
         <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="/assets/global.css"/>
-        <link rel="stylesheet" type="text/css" href="/assets/main.css"/>
+        <link rel="stylesheet" type="text/css" href="/assets/global.css?v={% version %}"/>
+        <link rel="stylesheet" type="text/css" href="/assets/tailwind.css?v={% version %}"/>
 
-        <script defer src="/assets/main.js"/>
+        <script defer src="/assets/main.js?v={% version %}"/>
 
         {% block head %}{% endblock %}
     </head>
@@ -20,7 +20,7 @@
             {% include "components/nav.njk" %}
         </header>
 
-        <main class="w-96 mx-auto">
+        <main class="max-w-lg mx-auto">
             {% block component %}
                 {{ content | safe }}
             {% endblock %}
