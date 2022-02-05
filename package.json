@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@11ty/eleventy": "^1.0.0",
+    "@11ty/eleventy-plugin-rss": "^1.1.2",
     "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
     "@11tyrocks/eleventy-plugin-open-in-codepen": "^1.0.0",
     "axios": "^0.21.4"
