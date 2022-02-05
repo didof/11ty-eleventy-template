@@ -1,9 +1,10 @@
 ---
 title: Details and Summary HTML5 tags!
-order: 1
 date: 2021-02-05
 templateEngineOverride: njk, md
+order: 1
 open: true
+draft: false
 ---
 <!-- based on https://11ty.rocks/posts/eleventy-templating-static-code-demos/ -->
 

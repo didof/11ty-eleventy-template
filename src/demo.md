@@ -34,7 +34,7 @@ Since `src` contains a folder named `pages`, which contains a file named `pages.
 Thanks to `tags` I can find the iterable pages under `collections.pages`.
 The actual layouting is due to `layout` property.
 
-### Snippets
+### Snippets ({{ collections.snippets_processed.length }})
 
 Differently from pages, `snippet.json` has the following content:
 
@@ -48,6 +48,9 @@ Differently from pages, `snippet.json` has the following content:
 As you can see it lacks of the `layout` property. This is so because the snippet data is not supposed to be render as a a page - indeed `permalink` is set to false.
 Yet `collections.snippets` is available in every template. The renderer DOM is dynamically generate upon calling `snippet.templateContent`. At that point the ball pass to `snippet.njk`
 
-{% for snippet in collections.snippets %}
+
+
+
+{% for snippet in collections.snippets_processed%}
 {{ snippet.templateContent | safe }}
 {%- endfor %}
