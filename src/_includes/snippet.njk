@@ -1,0 +1,68 @@
+<style>
+    article {
+        width: 30rem;
+        padding: 1rem;
+        background: white;
+        margin: 10px auto;
+        border-radius: 10px;
+        box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    details {
+        margin-bottom: 1rem;
+    }
+
+    summary {
+        cursor: pointer;
+    }
+
+    .output {
+        min-height: 10rem;
+        background: whitesmoke;
+        border-radius: 10px;
+        margin: 1rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    {{css | safe}}
+</style>
+
+<article>
+<details {% if open %}open{% endif%}>
+<summary>{{ title }}</summary>
+{{ description | safe }}
+
+<div class="output">
+{{ output | safe }}
+</div>
+
+{% if html.length %}
+<details>
+<summary>HTML</summary>
+{% highlight "html" %}
+{{ html | safe }}
+{% endhighlight %}
+</details>
+{% endif %}
+
+{% if css.length %}
+<details>
+<summary>CSS</summary>
+{% highlight "css" %}
+{{ css | safe }}
+{% endhighlight %}
+</details>
+{% endif %}
+
+{% if js.length %}
+<details>
+<summary>JS</summary>
+{% highlight "js" %}
+{{ js | safe }}
+{% endhighlight %}
+</details>
+{% endif %}
+
+</details>
