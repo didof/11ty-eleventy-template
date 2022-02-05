@@ -1,6 +1,8 @@
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
 const openInCodepen = require('@11tyrocks/eleventy-plugin-open-in-codepen')
-const pluginRss = require("@11ty/eleventy-plugin-rss");
+const pluginRss = require('@11ty/eleventy-plugin-rss')
+
+const filterDateFormat = require('./src/utils/filters/dateFormat.js')
 
 const outAllDraft = filterOutByMeta('draft')
 const byOrder = cardinalSortByMeta('order')
@@ -24,7 +26,11 @@ module.exports = eleventyConfig => {
     buttonClass: 'button-in-codepen-button',
     buttonIconClass: 'button-in-codepen-button-icon',
   })
-  eleventyConfig.addPlugin(pluginRss);
+  eleventyConfig.addPlugin(pluginRss)
+
+  /** FILTERS */
+  // filters.registerAll(eleventyConfig)
+  eleventyConfig.addFilter(...filterDateFormat)
 
   return {
     dir: {

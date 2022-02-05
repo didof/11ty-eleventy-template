@@ -1,0 +1,22 @@
+<nav>
+  <ul>
+    {% for link in collections.nav %}
+      {% if link.url %}
+      <li>
+        <a href="{{ link.url }}">{{ link.data.title }}</a>
+      </li>
+      {% endif %}
+    {%- endfor %}
+  </ul>
+</nav>
+
+<style>
+  ul {
+    background: black;
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    list-style: none;
+  }
+</style>

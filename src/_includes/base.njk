@@ -6,10 +6,14 @@
         <title>{{ title }}</title>
 
         <link rel="stylesheet" href="{{ '/css/style.css' | url }}"/>
+
+        {% block head %}{% endblock %}
     </head>
     <body>
         <header>
             <h1>{{ title }}</h1>
+
+            {% include "components/nav.njk" %}
         </header>
 
         <main>
