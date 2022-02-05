@@ -1,4 +1,5 @@
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
+const openInCodepen = require('@11tyrocks/eleventy-plugin-open-in-codepen')
 
 const outAllDraft = filterOutByMeta('draft')
 const byOrder = cardinalSortByMeta('order')
@@ -15,6 +16,13 @@ module.exports = eleventyConfig => {
 
   /** PLUGINS */
   eleventyConfig.addPlugin(syntaxHighlight)
+  eleventyConfig.addPlugin(openInCodepen, {
+    siteUrl: 'didof.dev',
+    siteTitle: 'didof',
+    siteTag: 'didof',
+    buttonClass: 'button-in-codepen-button',
+    buttonIconClass: 'button-in-codepen-button-icon',
+  })
 
   return {
     dir: {

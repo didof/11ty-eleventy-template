@@ -1,5 +1,6 @@
 ---
 title: Details and Summary HTML5 tags!
+slug: details-and-summary
 date: 2021-02-05
 templateEngineOverride: njk, md
 order: 1
