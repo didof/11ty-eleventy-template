@@ -27,7 +27,6 @@ module.exports = async function imageShortcode(
     outputDir: path.join('public', dir),
     urlPath: dir,
     filenameFormat: function (id, src, width, format, options) {
-      console.log(id)
       return `${id}-${width}.${format}`
     },
   })

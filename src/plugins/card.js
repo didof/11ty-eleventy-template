@@ -1,11 +1,13 @@
+const outdent = require('outdent')
+
 module.exports = function cardShortcode(content, title, cta, link) {
-return `
-<article class="w-96 rounded-md shadow-md p-4 flex flex-col gap-2">
-<header>${title}</header>
+  return outdent`
+    <article class="w-96 rounded-md shadow-md p-4 flex flex-col gap-2">
+        <header>${title}</header>
 
-${content}
+        ${content}
 
-<footer><a href="${link}">${cta}</a></footer>
-</article>
+        <footer><a href="${link}">${cta}</a></footer>
+    </article>
 `
 }

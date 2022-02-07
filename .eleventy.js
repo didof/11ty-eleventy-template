@@ -1,13 +1,19 @@
+const fs = require('fs')
+
+/** LIBRARIES */
+const mdLibrary = require('./config/libraries/md.js')
+
 /** PLUGINS */
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
 const openInCodepen = require('@11tyrocks/eleventy-plugin-open-in-codepen')
 // const pluginRss = require('@11ty/eleventy-plugin-rss')
 
-/** OPTIMIZATIONS */
-const htmlmin = require('html-minifier')
+/** TRANSFORMERS */
+const htmlMinifierTransformer = require('./config/transformers/html-minifier.js')
 
 /** FILTERS */
-const filterDateFormat = require('./src/utils/filters/dateFormat.js')
+const filterDateFormat = require('./config/filters/dateFormat.js')
+const headFilter = require('./config/filters/head.js')
 
 /** HELPERS */
 const outAllDraft = filterOutByMeta('draft')
@@ -43,9 +49,12 @@ module.exports = eleventyConfig => {
   })
   // eleventyConfig.addPlugin(pluginRss)
 
+  /** LIBRARIES */
+  eleventyConfig.setLibrary('md', mdLibrary(eleventyConfig))
+
   /** FILTERS */
-  // filters.registerAll(eleventyConfig)
   eleventyConfig.addFilter(...filterDateFormat)
+  eleventyConfig.addFilter('name', headFilter)
 
   /** SHORTCODES */
   eleventyConfig.addShortcode('version', () => String(new Date()))
@@ -54,26 +63,34 @@ module.exports = eleventyConfig => {
   eleventyConfig.addLiquidShortcode('image', imageShortcode)
   eleventyConfig.addJavaScriptFunction('image', imageShortcode)
 
-  eleventyConfig.addTransform('htmlmin', (content, outputPath) => {
-    if (
-      process.env.ELEVENTY_ENV === 'production' &&
-      outputPath &&
-      outputPath.endsWith('.html')
-    ) {
-      console.info(`[11ty] Minifying ${outputPath}`)
-      return htmlmin.minify(content, {
-        useShortDoctype: true,
-        removeComments: true,
-        collapseWhitespace: true,
-      })
-    }
+  eleventyConfig.addTransform('htmlmin', htmlMinifierTransformer)
 
-    return content
+  /** SERVER */
+  eleventyConfig.setBrowserSyncConfig({
+    callbacks: {
+      ready: function (err, browserSync) {
+        const content_404 = fs.readFileSync('public/404/index.html')
+
+        browserSync.addMiddleware('*', (req, res) => {
+          res.writeHead(404, { 'Content-type': 'text/html; charset=UTF-8' })
+          res.write(content_404)
+          res.end()
+        })
+      },
+    },
+    ui: false,
+    ghostMode: false,
   })
 
   return {
+    templateFormats: ['md', 'njk', 'html', 'liquid'],
+    // markdownTemplateEngine: "njk",
+    // htmlTemplateEngine: "njk",
+    // pathPrefix: "/",
     dir: {
       input: 'src',
+      includes: '_includes',
+      data: '_data',
       output: 'public',
     },
   }

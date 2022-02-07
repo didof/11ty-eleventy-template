@@ -1,4 +1,4 @@
-import observe from '../utils/APIs/intersectionObserver.js'
+import observe from '../utils/intersectionObserver.js'
 
 const lazyPictures = document.querySelectorAll(`.lazy-picture`)
 
