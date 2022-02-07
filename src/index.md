@@ -63,4 +63,4 @@ That's cool. Can be useful.
 
 ### Images
 
-{% image "images/leo-giulia.jpg" | url, 'leo-giulia', '' %}
+{% image "images/smiley-didof.jpg" | url, 'A smiling didof' %}

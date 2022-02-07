@@ -1,6 +1,3 @@
-// https://www.11ty.dev/docs/plugins/image/
-// https://www.aleksandrhovhannisyan.com/blog/eleventy-image-lazy-loading/
-
 const path = require('path')
 const Image = require('@11ty/eleventy-img')
 const classNames = require('classnames')
@@ -29,6 +26,10 @@ module.exports = async function imageShortcode(
     formats: [...optimizedFormats, baseFormat],
     outputDir: path.join('public', dir),
     urlPath: dir,
+    filenameFormat: function (id, src, width, format, options) {
+      console.log(id)
+      return `${id}-${width}.${format}`
+    },
   })
 
   // Map each unique format (e.g., jpeg, webp) to its smallest and largest images

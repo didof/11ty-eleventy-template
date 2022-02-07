@@ -14,8 +14,8 @@ const outAllDraft = filterOutByMeta('draft')
 const byOrder = cardinalSortByMeta('order')
 
 /** SHORTCODES */
-const cardShortcode = require('./src/utils/shortcodes/card.js')
-const imageShortcode = require('./src/utils/shortcodes/image.js')
+const cardShortcode = require('./src/plugins/card.js')
+const imageShortcode = require('./src/plugins/image.js')
 
 module.exports = eleventyConfig => {
   eleventyConfig.addPassthroughCopy({ './src/css/': '/assets/' })
