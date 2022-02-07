@@ -1,14 +1,21 @@
+/** PLUGINS */
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
 const openInCodepen = require('@11tyrocks/eleventy-plugin-open-in-codepen')
-const pluginRss = require('@11ty/eleventy-plugin-rss')
+// const pluginRss = require('@11ty/eleventy-plugin-rss')
 
+/** OPTIMIZATIONS */
 const htmlmin = require('html-minifier')
+
+/** FILTERS */
 const filterDateFormat = require('./src/utils/filters/dateFormat.js')
 
+/** HELPERS */
 const outAllDraft = filterOutByMeta('draft')
 const byOrder = cardinalSortByMeta('order')
 
-const card = require('./src/utils/shortcodes/card.js')
+/** SHORTCODES */
+const cardShortcode = require('./src/utils/shortcodes/card.js')
+const imageShortcode = require('./src/utils/shortcodes/image.js')
 
 module.exports = eleventyConfig => {
   eleventyConfig.addPassthroughCopy({ './src/css/': '/assets/' })
@@ -34,14 +41,18 @@ module.exports = eleventyConfig => {
     buttonClass: 'button-in-codepen-button',
     buttonIconClass: 'button-in-codepen-button-icon',
   })
-  eleventyConfig.addPlugin(pluginRss)
+  // eleventyConfig.addPlugin(pluginRss)
 
   /** FILTERS */
   // filters.registerAll(eleventyConfig)
   eleventyConfig.addFilter(...filterDateFormat)
 
+  /** SHORTCODES */
   eleventyConfig.addShortcode('version', () => String(new Date()))
-  eleventyConfig.addPairedShortcode("card", card);
+  eleventyConfig.addPairedShortcode('card', cardShortcode)
+  eleventyConfig.addNunjucksAsyncShortcode('image', imageShortcode)
+  eleventyConfig.addLiquidShortcode('image', imageShortcode)
+  eleventyConfig.addJavaScriptFunction('image', imageShortcode)
 
   eleventyConfig.addTransform('htmlmin', (content, outputPath) => {
     if (
@@ -67,6 +78,8 @@ module.exports = eleventyConfig => {
     },
   }
 }
+
+/** FACTORIES */
 
 function filterOutByMeta(metaData) {
   return function exec(collection) {

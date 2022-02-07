@@ -59,3 +59,8 @@ Yet `collections.snippets` is available in every template. The renderer DOM is d
 That's cool. Can be useful.
 
 {% endcard %}
+
+
+### Images
+
+{% image "images/leo-giulia.jpg" | url, 'leo-giulia', '' %}
