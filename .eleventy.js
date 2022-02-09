@@ -4,8 +4,9 @@ const fs = require('fs')
 const mdLibrary = require('./config/libraries/md.js')
 
 /** PLUGINS */
-const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
-const openInCodepen = require('@11tyrocks/eleventy-plugin-open-in-codepen')
+const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
+const pluginOpenInCodepen = require('@11tyrocks/eleventy-plugin-open-in-codepen')
+const pluginNavigation = require('@11ty/eleventy-navigation')
 // const pluginRss = require('@11ty/eleventy-plugin-rss')
 
 /** TRANSFORMERS */
@@ -23,6 +24,8 @@ const byOrder = cardinalSortByMeta('order')
 const cardShortcode = require('./src/plugins/card.js')
 const imageShortcode = require('./src/plugins/image.js')
 
+const { DateTime } = require('luxon')
+
 module.exports = eleventyConfig => {
   eleventyConfig.addPassthroughCopy({ './src/css/': '/assets/' })
   eleventyConfig.addWatchTarget('./src/css/')
@@ -39,8 +42,9 @@ module.exports = eleventyConfig => {
   )
 
   /** PLUGINS */
-  eleventyConfig.addPlugin(syntaxHighlight)
-  eleventyConfig.addPlugin(openInCodepen, {
+  eleventyConfig.addPlugin(pluginSyntaxHighlight)
+  eleventyConfig.addPlugin(pluginNavigation)
+  eleventyConfig.addPlugin(pluginOpenInCodepen, {
     siteUrl: 'didof.dev',
     siteTitle: 'didof',
     siteTag: 'didof',
@@ -54,8 +58,29 @@ module.exports = eleventyConfig => {
 
   /** FILTERS */
   eleventyConfig.addFilter(...filterDateFormat)
-  eleventyConfig.addFilter('name', headFilter)
+  eleventyConfig.addFilter('head', headFilter)
+  
+  eleventyConfig.addFilter('readableDate', dateObj => {
+    return DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('dd LLL yyyy')
+  })
 
+  // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
+  eleventyConfig.addFilter('htmlDateString', dateObj => {
+    return DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('yyyy-LL-dd')
+  })
+
+  eleventyConfig.addFilter('sitemapDateTimeString', dateObj => {
+    const dt = DateTime.fromJSDate(dateObj, { zone: 'utc' })
+    if (!dt.isValid) {
+      return ''
+    }
+    return dt.toISO()
+  })
+
+  eleventyConfig.addFilter('filterTagList', (tags) => {
+    return (tags || []).filter(tag => ["all", "nav", "post", "Posts"].indexOf(tag) === -1)
+  })
+  
   /** SHORTCODES */
   eleventyConfig.addShortcode('version', () => String(new Date()))
   eleventyConfig.addPairedShortcode('card', cardShortcode)

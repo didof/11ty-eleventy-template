@@ -1,6 +1,6 @@
 ---
 title: Demo
-layout: base.njk
+layout: layouts/base.njk
 templateEngineOverride: njk, md
 ---
 
@@ -64,3 +64,7 @@ That's cool. Can be useful.
 ### Images
 
 {% image "images/smiley-didof.jpg" | url, 'A smiling didof' %}
+
+test
+
+{{ collections.posts }}

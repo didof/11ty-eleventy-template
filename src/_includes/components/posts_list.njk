@@ -1,0 +1,26 @@
+{%- from "system/component.njk" import component -%}
+
+{%- if collections.posts %}
+
+    {% set postslist = collections.posts | head(posts_list__amount * -1) %}
+    {% set postslistCounter = collections.posts | length %}
+
+    <section class="w-full flex flex-col gap-2">
+
+        <h6 class="text-lg font-bold">{{ posts_list__title }}</h6>
+
+        <ol reverse class="flex flex-wrap gap-4">
+            {% for post in postslist %}
+                <li>
+                    {{ component('post', {
+                    title: post.data.title,
+                    url: post.url,
+                    date: post.date,
+                    tags: post.data.tags
+                    }) }}
+                </li>
+                {% endfor%}
+            </ol>
+        </section>
+
+    {%- endif %}

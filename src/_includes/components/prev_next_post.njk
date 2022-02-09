@@ -1,0 +1,29 @@
+{%- from "system/component.njk" import component -%}
+
+{%- if collections.posts %}
+  {%- set nextPost = collections.posts | getNextCollectionItem(page) %}
+  {%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}
+  {%- if nextPost or previousPost %}
+
+    <section class="p-4">
+      <ul class="w-full flex justify-between items-center gap-4">
+        {%- if nextPost %}
+          {{ component('post', {
+          title: nextPost.data.title,
+          url: nextPost.url,
+          date: nextPost.date,
+          tags: nextPost.data.tags
+        }) }}
+        {% endif %}
+        {%- if previousPost %}
+          {{ component('post', {
+          title: previousPost.data.title,
+          url: previousPost.url,
+          date: previousPost.date,
+          tags: previousPost.data.tags
+        }) }}
+        {% endif %}
+      </ul>
+    </section>
+  {%- endif %}
+{% endif %}

@@ -4,7 +4,33 @@ module.exports = {
   content: ['./src/**/*.{md,html,njk,js}'],
   theme: {
     colors: {
-      white: "#fff",
+      primary: {
+        DEFAULT: '#3B82F6',
+        50: '#EBF2FE',
+        100: '#D7E6FD',
+        200: '#B0CDFB',
+        300: '#89B4FA',
+        400: '#629BF8',
+        500: '#3B82F6',
+        600: '#0B61EE',
+        700: '#084BB8',
+        800: '#063583',
+        900: '#041F4D',
+      },
+      secondary: {
+        DEFAULT: '#F59E0B',
+        50: '#FCE4BB',
+        100: '#FBDCA8',
+        200: '#FACD81',
+        300: '#F8BD59',
+        400: '#F7AE32',
+        500: '#F59E0B',
+        600: '#C07C08',
+        700: '#8A5906',
+        800: '#543603',
+        900: '#1E1401',
+      },
+      white: '#fff',
       blue: '#1fb6ff',
       purple: '#7e5bef',
       pink: '#ff49db',
@@ -21,7 +47,5 @@ module.exports = {
     },
     extend: {},
   },
-  plugins: [
-    require('@tailwindcss/forms')
-  ],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 }

@@ -1,0 +1,17 @@
+<div class="w-full flex flex-col gap-1 p-4 hover:bg-primary-50 transition rounded-md shadow-sm hover:-translate-y-1 hover:shadow-lg cursor-pointer">
+    <a href="{{ params.url | url }}">
+        {% if params.title %}{{ params.title }}
+        {% else %}
+            <code>{{ params.url }}</code>
+        {% endif %}
+    </a>
+    {# <time datetime="{{ params.date | htmlDateString }}" class="text-xs text-gray">{{ params.date | readableDate }}</time> #}
+    <ul class="flex gap-1">
+        {% for tag in params.tags | filterTagList %}
+            {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+            <li class="bg-secondary-300 hover:bg-secondary-300/70 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-px transition">
+                <a href="{{ tagUrl | url }}" class="text-xs text-white p-2">{{ tag }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

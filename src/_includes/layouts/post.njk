@@ -1,0 +1,34 @@
+---
+templateClass: tmpl-post
+layout: layouts/base.njk
+---
+
+{%- from "system/component.njk" import component -%}
+
+{% set shareUrl = metadata.url %}
+
+{% block article %}
+    <article class="prose lg:prose-xl prose-a:text-secondary flex flex-col gap-2">
+
+        {{ content | safe }}
+
+        <footer>
+            <p class="text-sm">Written by {{ component('a', {
+                href: "/about/",
+                content: metadata.author.name
+            })}}
+            </p>
+            <p class="text-sm text-gray">Published {{ component('date', {
+                date: page.date
+            })}}</time>
+        </p>
+    </footer>
+
+</article>
+{% endblock %}
+
+{% include "components/prev_next_post.njk"%}
+
+{% set posts_list__title = "Check my latest posts" %}
+{% set posts_list__amount = 3 %}
+{% include "components/posts_list.njk" %}

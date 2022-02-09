@@ -27,10 +27,8 @@
     <body>
         {% include "components/header.njk" %}
 
-        <main class="max-w-lg mx-auto">
-            {% block component %}
-                {{ content | safe }}
-            {% endblock %}
+        <main class="max-w-4xl mx-auto flex flex-col items-center gap-4">
+            {{ content | safe }}
         </main>
 
         {% include "components/footer.njk" %}
