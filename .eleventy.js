@@ -7,13 +7,13 @@ const mdLibrary = require('./config/libraries/md.js')
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
 const pluginOpenInCodepen = require('@11tyrocks/eleventy-plugin-open-in-codepen')
 const pluginNavigation = require('@11ty/eleventy-navigation')
+const blogposts = require('./config/plugins/blogposts.js')
 // const pluginRss = require('@11ty/eleventy-plugin-rss')
 
 /** TRANSFORMERS */
 const htmlMinifierTransformer = require('./config/transformers/html-minifier.js')
 
 /** FILTERS */
-const filterDateFormat = require('./config/filters/dateFormat.js')
 const headFilter = require('./config/filters/head.js')
 
 /** HELPERS */
@@ -26,50 +26,51 @@ const imageShortcode = require('./src/plugins/image.js')
 
 const { DateTime } = require('luxon')
 
-module.exports = eleventyConfig => {
-  eleventyConfig.addPassthroughCopy({ './src/css/': '/assets/' })
-  eleventyConfig.addWatchTarget('./src/css/')
-  eleventyConfig.addWatchTarget('./src/utils/')
-  eleventyConfig.addWatchTarget('./tailwind.config.js')
+module.exports = conf => {
+  conf.addPassthroughCopy({ './src/css/': '/assets/' })
+  conf.addWatchTarget('./src/css/')
+  conf.addWatchTarget('./src/utils/')
+  conf.addWatchTarget('./tailwind.config.js')
 
   // https://github.com/11ty/eleventy/issues/768
   // https://github.com/gfscott/eleventy-plugin-embed-twitter
 
   /** COLLECTIONS */
-  eleventyConfig.addCollection('nav', collection => collection.getAll())
-  eleventyConfig.addCollection('snippets_processed', collection =>
+  conf.addCollection('nav', collection => collection.getAll())
+  conf.addCollection('snippets_processed', collection =>
     collection.getFilteredByTag('snippets').filter(outAllDraft).sort(byOrder)
   )
+  
 
   /** PLUGINS */
-  eleventyConfig.addPlugin(pluginSyntaxHighlight)
-  eleventyConfig.addPlugin(pluginNavigation)
-  eleventyConfig.addPlugin(pluginOpenInCodepen, {
+  conf.addPlugin(pluginSyntaxHighlight)
+  conf.addPlugin(pluginNavigation)
+  conf.addPlugin(blogposts)
+  conf.addPlugin(pluginOpenInCodepen, {
     siteUrl: 'didof.dev',
     siteTitle: 'didof',
     siteTag: 'didof',
     buttonClass: 'button-in-codepen-button',
     buttonIconClass: 'button-in-codepen-button-icon',
   })
-  // eleventyConfig.addPlugin(pluginRss)
+  // conf.addPlugin(pluginRss)
 
   /** LIBRARIES */
-  eleventyConfig.setLibrary('md', mdLibrary(eleventyConfig))
+  conf.setLibrary('md', mdLibrary(conf))
 
   /** FILTERS */
-  eleventyConfig.addFilter(...filterDateFormat)
-  eleventyConfig.addFilter('head', headFilter)
-  
-  eleventyConfig.addFilter('readableDate', dateObj => {
+  conf.addFilter('head', headFilter)
+
+  conf.addFilter('readableDate', dateObj => {
     return DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('dd LLL yyyy')
   })
 
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
-  eleventyConfig.addFilter('htmlDateString', dateObj => {
+  conf.addFilter('htmlDateString', dateObj => {
     return DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('yyyy-LL-dd')
   })
 
-  eleventyConfig.addFilter('sitemapDateTimeString', dateObj => {
+  conf.addFilter('sitemapDateTimeString', dateObj => {
     const dt = DateTime.fromJSDate(dateObj, { zone: 'utc' })
     if (!dt.isValid) {
       return ''
@@ -77,21 +78,23 @@ module.exports = eleventyConfig => {
     return dt.toISO()
   })
 
-  eleventyConfig.addFilter('filterTagList', (tags) => {
-    return (tags || []).filter(tag => ["all", "nav", "post", "Posts"].indexOf(tag) === -1)
+  conf.addFilter('filterTagList', tags => {
+    return (tags || []).filter(
+      tag => ['all', 'nav', 'post', 'Posts'].indexOf(tag) === -1
+    )
   })
-  
-  /** SHORTCODES */
-  eleventyConfig.addShortcode('version', () => String(new Date()))
-  eleventyConfig.addPairedShortcode('card', cardShortcode)
-  eleventyConfig.addNunjucksAsyncShortcode('image', imageShortcode)
-  eleventyConfig.addLiquidShortcode('image', imageShortcode)
-  eleventyConfig.addJavaScriptFunction('image', imageShortcode)
 
-  eleventyConfig.addTransform('htmlmin', htmlMinifierTransformer)
+  /** SHORTCODES */
+  conf.addShortcode('version', () => String(new Date()))
+  conf.addPairedShortcode('card', cardShortcode)
+  conf.addNunjucksAsyncShortcode('image', imageShortcode)
+  conf.addLiquidShortcode('image', imageShortcode)
+  conf.addJavaScriptFunction('image', imageShortcode)
+
+  conf.addTransform('htmlmin', htmlMinifierTransformer)
 
   /** SERVER */
-  eleventyConfig.setBrowserSyncConfig({
+  conf.setBrowserSyncConfig({
     callbacks: {
       ready: function (err, browserSync) {
         const content_404 = fs.readFileSync('public/404/index.html')

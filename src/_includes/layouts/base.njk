@@ -29,8 +29,10 @@
     <body class="min-h-screen flex flex-col">
         {% include "components/header.njk" %}
 
-        <main class="flex-grow max-w-4xl mx-auto flex flex-col items-center gap-4">
-            {{ content | safe }}
+        <main class="flex-grow max-w-4xl w-3/4 mx-auto flex flex-col gap-4">
+            {% block content %}
+                {{ content | safe }}
+            {% endblock %}
         </main>
 
         {% include "components/footer.njk" %}
