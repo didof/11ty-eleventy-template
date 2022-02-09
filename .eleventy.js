@@ -7,7 +7,7 @@ const mdLibrary = require('./config/libraries/md.js')
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
 const pluginOpenInCodepen = require('@11tyrocks/eleventy-plugin-open-in-codepen')
 const pluginNavigation = require('@11ty/eleventy-navigation')
-const blogposts = require('./config/plugins/blogposts.js')
+const pluginBlog = require('./config/plugins/blog.plugin.js')
 // const pluginRss = require('@11ty/eleventy-plugin-rss')
 
 /** TRANSFORMERS */
@@ -45,7 +45,7 @@ module.exports = conf => {
   /** PLUGINS */
   conf.addPlugin(pluginSyntaxHighlight)
   conf.addPlugin(pluginNavigation)
-  conf.addPlugin(blogposts)
+  conf.addPlugin(pluginBlog)
   conf.addPlugin(pluginOpenInCodepen, {
     siteUrl: 'didof.dev',
     siteTitle: 'didof',

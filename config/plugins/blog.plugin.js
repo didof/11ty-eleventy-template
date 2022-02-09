@@ -2,27 +2,28 @@ const slugify = require('slugify')
 const lodash = require('lodash')
 
 const defaultOptions = {
-  postsCollectionName: 'blogposts',
+  postsCollectionName: 'blogPosts',
   categoriesCollectionName: 'blogCategories',
+  tagsCollectionName: 'blogTags',
 }
 
 module.exports = {
   configFunction: function (conf, options = defaultOptions) {
-    options = Object.assign(options, defaultOptions)
+    options = Object.assign(defaultOptions, options)
 
     conf.addCollection(options.postsCollectionName, collection => {
       return collection.getFilteredByGlob('./src/posts/*.md').reverse()
     })
 
-    conf.addCollection(options.categoriesCollectionName, collection => {
+    conf.addCollection(options.tagsCollectionName, collection => {
       const allPosts = collection.getFilteredByGlob('./src/posts/*.md')
 
-      const [categories, counters] = getAllCategories(allPosts, toLowerCase)
+      const [tags, counters] = getAllTags(allPosts, toLowerCase)
 
-      return categories.sort(sortByLocale).map(category => ({
-        title: category,
-        amount: counters[category],
-        slug: strToSlug(category),
+      return tags.sort(sortByLocale).map(tag => ({
+        title: tag,
+        amount: counters[tag],
+        slug: strToSlug(tag),
       }))
 
       function toLowerCase(string) {
@@ -55,31 +56,29 @@ module.exports = {
   },
 }
 
-function getAllCategories(posts, ...cbs) {
-  const rawCategories = lodash.flattenDeep(
+function getAllTags(posts, ...cbs) {
+  const rawTags = lodash.flattenDeep(
     posts.map(item => {
-      return item.data.categories ? item.data.categories : []
+      return item.data.tags ? item.data.tags : []
     })
   )
 
-  const counters = rawCategories.reduce((counter, category) => {
-    counter.hasOwnProperty(category)
-      ? (counter[category] += 1)
-      : (counter[category] = 1)
+  const counters = rawTags.reduce((counter, tag) => {
+    counter.hasOwnProperty(tag) ? (counter[tag] += 1) : (counter[tag] = 1)
 
     return counter
   }, {})
 
-  let categories = lodash.uniq(rawCategories)
+  let tags = lodash.uniq(rawTags)
 
   if (cbs && cbs.length) {
-    categories = categories.map(category => {
+    tags = tags.map(tag => {
       return cbs.reduce((tmp, cb) => {
         tmp = cb(tmp)
         return tmp
-      }, category)
+      }, tag)
     })
   }
 
-  return [categories, counters]
+  return [tags, counters]
 }
