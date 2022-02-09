@@ -2,8 +2,8 @@
 layout: layouts/base.njk
 ---
 
-{{ content | safe }}
+<div class="prose lg:prose-xl">
 
-<footer>
-    <p>Published on: {{ page.date.toDateString() }}</p>
-</footer>
+    {{ content | safe }}
+
+</div>

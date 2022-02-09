@@ -1,6 +1,6 @@
 ---
 title: Demo
-layout: layouts/base.njk
+layout: layouts/page.njk
 templateEngineOverride: njk, md
 ---
 

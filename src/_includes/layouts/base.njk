@@ -1,3 +1,5 @@
+{%- from "system/component.njk" import component -%}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -24,10 +26,10 @@
         <script defer src="/assets/main.js?v={% version %}"></script>
         {% block head %}{% endblock %}
     </head>
-    <body>
+    <body class="min-h-screen flex flex-col">
         {% include "components/header.njk" %}
 
-        <main class="max-w-4xl mx-auto flex flex-col items-center gap-4">
+        <main class="flex-grow max-w-4xl mx-auto flex flex-col items-center gap-4">
             {{ content | safe }}
         </main>
 
