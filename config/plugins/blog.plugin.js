@@ -5,34 +5,51 @@ const defaultOptions = {
   postsCollectionName: 'blogPosts',
   categoriesCollectionName: 'blogCategories',
   tagsCollectionName: 'blogTags',
+  relativePath: './src/blog/posts/*.md',
 }
 
 module.exports = {
   configFunction: function (conf, options = defaultOptions) {
     options = Object.assign(defaultOptions, options)
 
-    conf.addCollection(options.postsCollectionName, collection => {
-      return collection.getFilteredByGlob('./src/posts/*.md').reverse()
+    const [getAllPosts, getAllPostsReverse] = makeAllPostGetters(
+      options.relativePath
+    )
+
+    conf.addCollection(options.postsCollectionName, getAllPostsReverse)
+
+    conf.addCollection(options.categoriesCollectionName, collection => {
+      const allPosts = getAllPosts(collection)
+
+      const [categories, counters] = getAllCategories(allPosts, toLowerCase)
+
+      return categories.sort(sortByLocale).map(category => ({
+        value: category,
+        amount: counters[category],
+        slug: strToSlug(category),
+      }))
+
+      function strToSlug(string) {
+        const options = {
+          replacement: '-',
+          remove: /[&,+()$~%.'":*?<>{}]/g,
+          lower: true,
+        }
+
+        return slugify(string, options)
+      }
     })
 
     conf.addCollection(options.tagsCollectionName, collection => {
-      const allPosts = collection.getFilteredByGlob('./src/posts/*.md')
+      const allPosts = getAllPosts(collection)
 
       const [tags, counters] = getAllTags(allPosts, toLowerCase)
 
       return tags.sort(sortByLocale).map(tag => ({
-        title: tag,
+        value: tag,
         amount: counters[tag],
         slug: strToSlug(tag),
       }))
-
-      function toLowerCase(string) {
-        return string.toLowerCase()
-      }
-
-      function sortByLocale(a, b) {
-        return a.localeCompare(b, 'en', { sensitivity: 'base' })
-      }
 
       function strToSlug(string) {
         const options = {
@@ -53,32 +70,91 @@ module.exports = {
         return pathValue.includes(value)
       })
     })
+
+    conf.addFilter('filterByCategory', (posts, targetCategory) => {
+      targetCategory = lodash.deburr(targetCategory).toLowerCase()
+      return posts.filter(post => post.data.category === targetCategory)
+    })
   },
+}
+
+function makeAllPostGetters(relativePath) {
+  return [getAll, getAllReverse]
+
+  function getAllReverse(collection) {
+    return getAll(collection).reverse()
+  }
+
+  function getAll(collection) {
+    return collection.getFilteredByGlob(relativePath)
+  }
 }
 
 function getAllTags(posts, ...cbs) {
   const rawTags = lodash.flattenDeep(
-    posts.map(item => {
-      return item.data.tags ? item.data.tags : []
+    posts.map(post => {
+      return post.data.tags ? post.data.tags : []
     })
   )
 
-  const counters = rawTags.reduce((counter, tag) => {
-    counter.hasOwnProperty(tag) ? (counter[tag] += 1) : (counter[tag] = 1)
-
-    return counter
-  }, {})
+  const counters = countOccurrences(rawTags)
 
   let tags = lodash.uniq(rawTags)
 
-  if (cbs && cbs.length) {
-    tags = tags.map(tag => {
-      return cbs.reduce((tmp, cb) => {
-        tmp = cb(tmp)
+  tags = pipeModificators(tags, cbs)
+
+  return [tags, counters]
+}
+
+function getAllCategories(posts, ...cbs) {
+  const rawCategories = posts.map(post => {
+    const { category } = post.data
+    if (!category) {
+      console.warn(`The post [${post.data.title}] is missing of a category`)
+      process.exit(1)
+    }
+    if (typeof category !== 'string') {
+      console.warn(
+        `The post [${post.data.title}] must have a category of type 'string'`
+      )
+      process.exit(1)
+    }
+    return category
+  })
+
+  const counters = countOccurrences(rawCategories)
+
+  let categories = lodash.uniq(rawCategories)
+
+  categories = pipeModificators(categories, cbs)
+
+  return [categories, counters]
+}
+
+function pipeModificators(array, modificators) {
+  if (modificators && modificators.length) {
+    return array.map(tag => {
+      return modificators.reduce((tmp, fn) => {
+        tmp = fn(tmp)
         return tmp
       }, tag)
     })
   }
 
-  return [tags, counters]
+  return array
+}
+
+function countOccurrences(rawArray) {
+  return rawArray.reduce((counter, item) => {
+    counter.hasOwnProperty(item) ? (counter[item] += 1) : (counter[item] = 1)
+    return counter
+  }, {})
+}
+
+function toLowerCase(string) {
+  return string.toLowerCase()
+}
+
+function sortByLocale(a, b) {
+  return a.localeCompare(b, 'en', { sensitivity: 'base' })
 }

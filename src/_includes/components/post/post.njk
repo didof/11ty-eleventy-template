@@ -1,10 +1,5 @@
 <div class="w-full flex flex-col gap-2 p-4 cursor-pointer card">
-    <a href="{{ params.url | url }}">
-        {% if params.title %}{{ params.title }}
-        {% else %}
-            <code>{{ params.url }}</code>
-        {% endif %}
-    </a>
+    <a href="{{ params.url | url }}">{{ params.title }}</a>
     {# <time datetime="{{ params.date | htmlDateString }}" class="text-xs text-gray">{{ params.date | readableDate }}</time> #}
     <ul class="flex gap-1">
         {% for tag in params.tags | filterTagList %}

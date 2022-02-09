@@ -1,22 +1,22 @@
 ---
-title: Tags
+title: Categories
 layout: layouts/base.njk
 templateEngineOverride: njk
 pagination:
-    data: collections.blogTags
+    data: collections.blogCategories
     size: 1
-    alias: tag
-permalink: /blog/tags/{{ tag.slug }}/
+    alias: category
+permalink: /blog/categories/{{ category.slug }}/
 ---
 
 {%- from "system/component.njk" import component -%}
 
-<h2>Blog tag: {{ tag.value }}</h2>
+<h2>Blog category: {{ category.value }}</h2>
 
 <section class="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
 
 <ul class="flex flex-col gap-4">
-{% for post in collections.blogPosts | include("data.tags", tag.value) %}
+{% for post in collections.blogPosts | filterByCategory(category.value) %}
     <li>
         {{component('post', {
             title: post.data.title,
@@ -29,8 +29,8 @@ permalink: /blog/tags/{{ tag.slug }}/
 </ul>
 
 <ul class="flex flex-col gap-4">
-{% for tag in collections.blogTags %}
-    <li class="card">{{ tag.value }} {{ tag.amount }}</li>
+{% for category in collections.blogCategories %}
+    <li class="card">{{ category.value }} {{ category.amount }}</li>
 {% endfor %}
 </ul>
 
