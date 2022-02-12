@@ -1,19 +1,9 @@
-const defaultOptions = {
-  image: true,
-}
-
 module.exports = {
-  configFunction: function (conf, options = defaultOptions) {
-    options = Object.assign(defaultOptions, options)
+  configFunction: function (conf) {
+    const shortcode = require(`./image.js`)
 
-    Object.entries(options).forEach(([name, enable]) => {
-      if (!enable) return
-
-      const shortcode = require(`./${name}.js`)
-
-      conf.addNunjucksAsyncShortcode(name, shortcode)
-      conf.addLiquidShortcode(name, shortcode)
-      conf.addJavaScriptFunction(name, shortcode)
-    })
+    conf.addNunjucksAsyncShortcode('image', shortcode)
+    conf.addLiquidShortcode('image', shortcode)
+    conf.addJavaScriptFunction('image', shortcode)
   },
 }

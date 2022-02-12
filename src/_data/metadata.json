@@ -6,6 +6,10 @@
   "genre": "Insert a schema.org genre",
   "googleAnalyticsId": "GA ID. Update me. Note, that this is not compatible with the not-yet-commonly used version 4 of Google Analytics",
   "sendWebVitals": false,
+  "favicon": {
+    "dev": "🎛️",
+    "prod": "💻"
+  },
   "feed": {
     "subtitle": "Check this out",
     "filename": "feed.xml",
