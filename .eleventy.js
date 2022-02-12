@@ -1,9 +1,6 @@
 // @ts-nocheck
 const fs = require('fs')
 
-const outAllDraft = filterOutByMeta('draft')
-const byOrder = cardinalSortByMeta('order')
-
 module.exports = conf => {
   conf.addPassthroughCopy({ './src/assets/styles': '/assets/styles' })
   conf.addPassthroughCopy({ './src/assets/images': '/assets/images' })
@@ -13,9 +10,6 @@ module.exports = conf => {
   conf.addWatchTarget('./tailwind.config.js')
 
   conf.addCollection('nav', collection => collection.getAll())
-  conf.addCollection('snippets_processed', collection =>
-    collection.getFilteredByTag('snippets').filter(outAllDraft).sort(byOrder)
-  )
 
   conf.addPlugin(require('@11ty/eleventy-plugin-syntaxhighlight'))
   conf.addPlugin(require('@11ty/eleventy-navigation'))
@@ -82,19 +76,4 @@ module.exports = conf => {
   }
 }
 
-/** FACTORIES */
-
-function filterOutByMeta(metaData) {
-  return function exec(collection) {
-    return !collection.data[metaData]
-  }
-}
-
-function cardinalSortByMeta(metaData) {
-  return function exec(a, b) {
-    return a.data[metaData] - b.data[metaData]
-  }
-}
-
-// https://github.com/11ty/eleventy/issues/768
 // https://github.com/gfscott/eleventy-plugin-embed-twitter
