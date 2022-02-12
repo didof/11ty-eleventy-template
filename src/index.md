@@ -1,8 +1,14 @@
 ---
 title: Demo
 layout: layouts/page.njk
-templateEngineOverride: njk, md
+templateEngineOverride: njk
 ---
+
+{% cardEc 'card_expandable_header' %}
+
+Wallet
+
+{% endcardEc %}
 
 ## Navigation
 
@@ -63,8 +69,9 @@ That's cool. Can be useful.
 
 ### Images
 
-{% image "images/smiley-didof.jpg" | url, 'A smiling didof' %}
+
 
 {% skeu %}
 skeu
 {% endskeu %}
+

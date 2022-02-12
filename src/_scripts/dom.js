@@ -16,7 +16,15 @@ function btn(id) {
   let button
   if (!(button = memoized.get(id))) {
     button = document.getElementById(id)
+    if (!button) return notFound(id)
     memoized.set(id, button)
   }
   return button
+}
+
+function notFound(id) {
+  console.warn(`<button id="${id}"> was not found.`)
+  return {
+    addEventListener() {},
+  }
 }

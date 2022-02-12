@@ -22,7 +22,8 @@ module.exports = conf => {
   conf.addPlugin(require('./config/plugins/buttons'))
   conf.addPlugin(require('./config/plugins/filters'))
   conf.addPlugin(require('./config/plugins/lazy-image'))
-  
+  conf.addPlugin(require('./config/plugins/cards'))
+
   conf.setLibrary('md', require('./config/libraries/md.js')(conf))
 
   conf.addShortcode('version', () => String(new Date()))
