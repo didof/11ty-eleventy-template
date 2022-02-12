@@ -1,12 +1,7 @@
 const htmlmin = require('html-minifier')
 
 module.exports = (content, outputPath) => {
-  if (
-    process.env.ELEVENTY_ENV === 'production' &&
-    outputPath &&
-    outputPath.endsWith('.html')
-  ) {
-    console.info(`[11ty] Minifying ${outputPath}`)
+  if (outputPath && outputPath.endsWith('.html')) {
     return htmlmin.minify(content, {
       useShortDoctype: true,
       removeComments: true,

@@ -2,9 +2,7 @@
 const fs = require('fs')
 
 module.exports = conf => {
-  conf.addPassthroughCopy({ './src/assets/styles': '/assets/styles' })
-  conf.addPassthroughCopy({ './src/assets/images': '/assets/images' })
-  conf.addPassthroughCopy({ './src/assets/fonts': '/assets/fonts' })
+  conf.addPassthroughCopy({ './src/assets': '/assets' })
   conf.addWatchTarget('./src/assets/')
   conf.addWatchTarget('./src/utils/')
   conf.addWatchTarget('./tailwind.config.js')
@@ -39,10 +37,12 @@ module.exports = conf => {
 
   conf.addShortcode('version', () => String(new Date()))
 
-  conf.addTransform(
-    'htmlmin',
-    require('./config/transformers/html-minifier.js')
-  )
+  prod(() => {
+    conf.addTransform(
+      'htmlmin',
+      require('./config/transformers/html-minifier.js')
+    )
+  })
 
   /** SERVER */
   conf.setBrowserSyncConfig({
@@ -76,4 +76,6 @@ module.exports = conf => {
   }
 }
 
-// https://github.com/gfscott/eleventy-plugin-embed-twitter
+function prod(cb) {
+  if (process.env.ELEVENTY_ENV === 'production') cb()
+}
