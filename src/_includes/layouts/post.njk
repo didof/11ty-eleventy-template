@@ -8,25 +8,33 @@ layout: layouts/base.njk
 {% set shareUrl = metadata.url %}
 
 {% block article %}
-    <article class="prose lg:prose-xl prose-a:text-secondary flex flex-col gap-2">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
-       {{ content | timeToRead }}
+        <aside class="flex flex-col gap-2">
+            
+            {{ content | timeToRead }}
 
-        {{ content | safe }}
+            {{ content | toc | safe }}
+        </aside>
 
-        <footer>
-            <p class="text-sm">Written by {{ component('a', {
+        <article class="prose lg:prose-xl prose-a:text-secondary flex flex-col gap-2">
+
+            {{ content | safe }}
+
+            <footer>
+                <p class="text-sm">Written by {{ component('a', {
                 href: "/about/",
                 content: metadata.author.name
             })}}
-            </p>
-            <p class="text-sm text-gray">Published {{ component('date', {
+                </p>
+                <p class="text-sm text-gray">Published {{ component('date', {
                 date: page.date
             })}}</time>
-        </p>
-    </footer>
+            </p>
+        </footer>
 
-</article>
+    </article>
+</div>
 {% endblock %}
 
 {% include "components/prev_next_post.njk"%}

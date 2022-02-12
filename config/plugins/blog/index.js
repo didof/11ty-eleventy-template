@@ -1,5 +1,6 @@
 const slugify = require('slugify')
 const lodash = require('lodash')
+const pluginTOC = require('eleventy-plugin-toc')
 
 const defaultOptions = {
   postsCollectionName: 'blogPosts',
@@ -77,6 +78,8 @@ module.exports = {
     })
 
     conf.setLibrary('md', require('./md.js')(conf))
+
+    conf.addPlugin(pluginTOC)
   },
 }
 
