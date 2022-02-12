@@ -11,6 +11,7 @@ module.exports = conf => {
 
   conf.addPlugin(require('@11ty/eleventy-plugin-syntaxhighlight'))
   conf.addPlugin(require('@11ty/eleventy-navigation'))
+  conf.addPlugin(require('eleventy-google-fonts'))
   conf.addPlugin(require('eleventy-plugin-time-to-read'), {
     speed: '1000 characters per minute',
     language: 'en',
@@ -21,7 +22,8 @@ module.exports = conf => {
     seconds: false,
     digits: 1,
     output: function (data) {
-      const emoji = [null, '🐜', '🐤', '🐇', '🐕', '🐘'][data.minutes]
+      const emoji =
+        [null, '🐜', '🐤', '🐇', null, null, '🐘'][data.minutes] || '🐘'
       return `${emoji} ${data.minutes} ${data.speed.interval} reading`
     },
   })
@@ -31,11 +33,8 @@ module.exports = conf => {
   conf.addPlugin(require('./config/plugins/lazy-image'))
   conf.addPlugin(require('./config/plugins/cards'))
   conf.addPlugin(require('./config/plugins/external-links'))
-  conf.addPlugin(require('eleventy-google-fonts'))
 
-  conf.setLibrary('md', require('./config/libraries/md.js')(conf))
-
-  conf.addShortcode('version', () => String(new Date()))
+  conf.addShortcode('version', now)
 
   prod(() => {
     conf.addTransform(
@@ -78,4 +77,8 @@ module.exports = conf => {
 
 function prod(cb) {
   if (process.env.ELEVENTY_ENV === 'production') cb()
+}
+
+function now() {
+  return String(new Date())
 }

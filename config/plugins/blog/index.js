@@ -75,6 +75,8 @@ module.exports = {
       targetCategory = lodash.deburr(targetCategory).toLowerCase()
       return posts.filter(post => post.data.category === targetCategory)
     })
+
+    conf.setLibrary('md', require('./md.js')(conf))
   },
 }
 
