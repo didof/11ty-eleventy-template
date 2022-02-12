@@ -1,9 +1,7 @@
 ---
 layout: layouts/page.njk
 title: About Me
-eleventyNavigation:
-  key: About Me
-  order: 3
+permalink: /about/
 ---
 
 I am a person that writes stuff.
