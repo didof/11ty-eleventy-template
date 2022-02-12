@@ -15,4 +15,8 @@
   .card {
     @apply p-4 hover:bg-primary-50 transition rounded-md shadow-sm hover:-translate-y-1 hover:shadow-lg;
   }
+
+  .row {
+    @apply flex justify-between items-center
+  }
 }

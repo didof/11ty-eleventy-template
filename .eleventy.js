@@ -9,6 +9,7 @@ const pluginOpenInCodepen = require('@11tyrocks/eleventy-plugin-open-in-codepen'
 const pluginNavigation = require('@11ty/eleventy-navigation')
 const pluginBlog = require('./config/plugins/blog.plugin.js')
 // const pluginRss = require('@11ty/eleventy-plugin-rss')
+const pluginButtons = require('./config/plugins/buttons')
 
 /** TRANSFORMERS */
 const htmlMinifierTransformer = require('./config/transformers/html-minifier.js')
@@ -27,8 +28,8 @@ const imageShortcode = require('./src/plugins/image.js')
 const { DateTime } = require('luxon')
 
 module.exports = conf => {
-  conf.addPassthroughCopy({ './src/css/': '/assets/' })
-  conf.addWatchTarget('./src/css/')
+  conf.addPassthroughCopy({ './src/assets/styles': '/assets/styles' })
+  conf.addWatchTarget('./src/assets/')
   conf.addWatchTarget('./src/utils/')
   conf.addWatchTarget('./tailwind.config.js')
 
@@ -40,7 +41,6 @@ module.exports = conf => {
   conf.addCollection('snippets_processed', collection =>
     collection.getFilteredByTag('snippets').filter(outAllDraft).sort(byOrder)
   )
-  
 
   /** PLUGINS */
   conf.addPlugin(pluginSyntaxHighlight)
@@ -54,6 +54,7 @@ module.exports = conf => {
     buttonIconClass: 'button-in-codepen-button-icon',
   })
   // conf.addPlugin(pluginRss)
+  conf.addPlugin(pluginButtons)
 
   /** LIBRARIES */
   conf.setLibrary('md', mdLibrary(conf))
@@ -95,6 +96,7 @@ module.exports = conf => {
 
   /** SERVER */
   conf.setBrowserSyncConfig({
+    files: './public/**/*.css',
     callbacks: {
       ready: function (err, browserSync) {
         const content_404 = fs.readFileSync('public/404/index.html')

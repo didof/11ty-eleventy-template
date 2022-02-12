@@ -31,3 +31,4 @@ This is my personal 11ty template. Enjoy!
 - [ ] [quick tips](https://www.11ty.dev/docs/quicktips/)
 - [ ] [custom taxonomies](https://www.webstoemp.com/blog/basic-custom-taxonomies-with-eleventy/)
 - [ ] [data cascade](https://benmyers.dev/blog/eleventy-data-cascade/)
+- [ ] [official plugins](https://www.11ty.dev/docs/plugins/)

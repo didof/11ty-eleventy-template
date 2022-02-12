@@ -8,10 +8,15 @@
         <title>{{ title }}</title>
 
         <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="/assets/tailwind.css?v={% version %}"/>
+        <link rel="stylesheet" type="text/css" href="/assets/styles/tailwind.css?v={% version %}"/>
 
-        <link rel="stylesheet" type="text/css" href="/assets/global.css?v={% version %}"/>
-        <link rel="stylesheet" type="text/css" href="/assets/lazy-picture.css?v={% version %}"/>
+        <link rel="stylesheet" type="text/css" href="/assets/styles/global.css?v={% version %}"/>
+        <link rel="stylesheet" type="text/css" href="/assets/styles/lazy-picture.css?v={% version %}"/>
+
+        {# Comment/remove the css you are not using in the project #}
+        <link rel="stylesheet" type="text/css" href="/assets/styles/buttons/minimal_3d.css?v={% version %}"/>
+        <link rel="stylesheet" type="text/css" href="/assets/styles/buttons/skeumorphic.css?v={% version %}"/>
+
         <noscript>
             <style>
                 noscript {
