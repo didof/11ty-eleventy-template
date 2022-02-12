@@ -14,7 +14,6 @@ const byOrder = cardinalSortByMeta('order')
 
 /** SHORTCODES */
 const cardShortcode = require('./src/plugins/card.js')
-const imageShortcode = require('./src/plugins/image.js')
 
 module.exports = conf => {
   conf.addPassthroughCopy({ './src/assets/styles': '/assets/styles' })
@@ -42,9 +41,6 @@ module.exports = conf => {
 
   conf.addShortcode('version', () => String(new Date()))
   conf.addPairedShortcode('card', cardShortcode)
-  conf.addNunjucksAsyncShortcode('image', imageShortcode)
-  conf.addLiquidShortcode('image', imageShortcode)
-  conf.addJavaScriptFunction('image', imageShortcode)
 
   conf.addTransform('htmlmin', htmlMinifierTransformer)
 
