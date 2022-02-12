@@ -1,6 +1,4 @@
-export default () => {
-  $listen.onclick('btn_toggle', () => {
-    $toggle.disable('skeu')
-    $toggle.disable('minimal_3d')
-  })
-}
+$listen.onclick('btn_toggle', () => {
+  $toggle.disable('skeu')
+  $toggle.disable('minimal_3d')
+})

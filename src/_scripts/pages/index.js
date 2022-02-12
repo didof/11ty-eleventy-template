@@ -1,8 +1,8 @@
-import playground from './playground'
-
-switch (window.location.pathname) {
-  case '/':
-    break
-  case '/playground/':
-    playground()
-}
+;(async pathname => {
+  switch (pathname) {
+    case '/':
+      break
+    case '/playground/':
+      await import(`./playground`)
+  }
+})(window.location.pathname)
