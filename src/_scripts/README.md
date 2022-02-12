@@ -1,3 +1,7 @@
+---
+permalink: false
+---
+
 # _scripts
 
 ## Readings:

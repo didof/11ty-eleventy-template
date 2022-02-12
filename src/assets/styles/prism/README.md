@@ -1,3 +1,7 @@
+---
+permalink: false
+---
+
 Go to something like [prism-themes](https://github.com/PrismJS/prism-themes) and copy past in this folder the `.css`.
 
 Now remember to add into `base.njk` head tag (or anywhere you think it's best):

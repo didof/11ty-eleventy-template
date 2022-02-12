@@ -17,6 +17,14 @@ const eleventyPluginTimeToReadOptions = {
   },
 }
 
+const eleventyPluginDirectoryOutput = {
+  columns: {
+    filesize: true,
+    benchmark: true,
+  },
+  warningFileSize: 400 * 1000,
+}
+
 module.exports = conf => {
   conf.addPassthroughCopy({ './src/assets': '/assets' })
   conf.addWatchTarget('./src/assets/')
@@ -36,6 +44,10 @@ module.exports = conf => {
   conf.addPlugin(require('./config/plugins/lazy-image'))
   conf.addPlugin(require('./config/plugins/cards'))
   conf.addPlugin(require('./config/plugins/external-links'))
+  conf.addPlugin(
+    require('@11ty/eleventy-plugin-directory-output'),
+    eleventyPluginDirectoryOutput
+  )
 
   conf.addShortcode('version', now)
 

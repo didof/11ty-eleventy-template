@@ -1,3 +1,7 @@
+---
+permalink: false
+---
+
 # -webkit-scrollbar
 
 ## Readings:

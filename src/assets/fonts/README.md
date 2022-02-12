@@ -1,3 +1,7 @@
+---
+permalink: false
+---
+
 # Fonts
 
 Download any font and put it in this folder.
