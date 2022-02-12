@@ -1,18 +1,8 @@
 const fs = require('fs')
 
-/** LIBRARIES */
-const mdLibrary = require('./config/libraries/md.js')
-
-const pluginBlog = require('./config/plugins/blog.plugin.js')
-// const pluginRss = require('@11ty/eleventy-plugin-rss')
-
-const htmlMinifierTransformer = require('./config/transformers/html-minifier.js')
-
-/** HELPERS */
 const outAllDraft = filterOutByMeta('draft')
 const byOrder = cardinalSortByMeta('order')
 
-/** SHORTCODES */
 const cardShortcode = require('./src/plugins/card.js')
 
 module.exports = conf => {
@@ -21,9 +11,6 @@ module.exports = conf => {
   conf.addWatchTarget('./src/utils/')
   conf.addWatchTarget('./tailwind.config.js')
 
-  // https://github.com/11ty/eleventy/issues/768
-  // https://github.com/gfscott/eleventy-plugin-embed-twitter
-
   conf.addCollection('nav', collection => collection.getAll())
   conf.addCollection('snippets_processed', collection =>
     collection.getFilteredByTag('snippets').filter(outAllDraft).sort(byOrder)
@@ -31,18 +18,20 @@ module.exports = conf => {
 
   conf.addPlugin(require('@11ty/eleventy-plugin-syntaxhighlight'))
   conf.addPlugin(require('@11ty/eleventy-navigation'))
-  conf.addPlugin(pluginBlog)
+  conf.addPlugin(require('./config/plugins/blog'))
   conf.addPlugin(require('./config/plugins/buttons'))
   conf.addPlugin(require('./config/plugins/filters'))
   conf.addPlugin(require('./config/plugins/lazy-image'))
-  // conf.addPlugin(pluginRss)
-
-  conf.setLibrary('md', mdLibrary(conf))
+  
+  conf.setLibrary('md', require('./config/libraries/md.js')(conf))
 
   conf.addShortcode('version', () => String(new Date()))
   conf.addPairedShortcode('card', cardShortcode)
 
-  conf.addTransform('htmlmin', htmlMinifierTransformer)
+  conf.addTransform(
+    'htmlmin',
+    require('./config/transformers/html-minifier.js')
+  )
 
   /** SERVER */
   conf.setBrowserSyncConfig({
@@ -89,3 +78,6 @@ function cardinalSortByMeta(metaData) {
     return a.data[metaData] - b.data[metaData]
   }
 }
+
+// https://github.com/11ty/eleventy/issues/768
+// https://github.com/gfscott/eleventy-plugin-embed-twitter
