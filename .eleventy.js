@@ -33,6 +33,11 @@ module.exports = conf => {
 
   conf.addPlugin(require('@11ty/eleventy-plugin-syntaxhighlight'))
   conf.addPlugin(require('@11ty/eleventy-navigation'))
+  conf.addPlugin(require('@11ty/eleventy-plugin-rss'))
+  conf.addPlugin(
+    require('@11ty/eleventy-plugin-directory-output'),
+    eleventyPluginDirectoryOutput
+  )
   conf.addPlugin(require('eleventy-google-fonts'))
   conf.addPlugin(
     require('eleventy-plugin-time-to-read'),
@@ -44,10 +49,6 @@ module.exports = conf => {
   conf.addPlugin(require('./config/plugins/lazy-image'))
   conf.addPlugin(require('./config/plugins/cards'))
   conf.addPlugin(require('./config/plugins/external-links'))
-  conf.addPlugin(
-    require('@11ty/eleventy-plugin-directory-output'),
-    eleventyPluginDirectoryOutput
-  )
 
   conf.addShortcode('version', now)
 

@@ -1,21 +1,26 @@
 {
   "title": "Didof's eleventy template blog",
-  "url": "https://example.com/",
-  "language": "en",
-  "description": "I am writing about my experiences as a naval navel-gazer.",
+  "url": "http://127.0.0.1/",
+  "domain": "example.com",
+  "description": "Eleventy template",
+  "genre": "Insert a schema.org genre",
+  "googleAnalyticsId": "GA ID. Update me. Note, that this is not compatible with the not-yet-commonly used version 4 of Google Analytics",
+  "sendWebVitals": false,
   "feed": {
-    "subtitle": "I am writing about my experiences as a naval navel-gazer.",
+    "subtitle": "Check this out",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "id": "https://example.com/"
+    "id": "http://127.0.0.1/"
   },
   "jsonfeed": {
     "path": "/feed/feed.json",
-    "url": "https://example.com/feed/feed.json"
+    "url": "http://127.0.0.1/feed/feed.json"
   },
   "author": {
     "name": "Francesco Di Donato",
-    "email": "didonato.fr@gmail.com",
-    "url": "https://example.com/about/"
+    "twitterHandle": "@didof"
+  },
+  "publisher": {
+    "name": "Francesco Di Donato"
   }
 }
