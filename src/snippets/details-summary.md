@@ -6,7 +6,6 @@ templateEngineOverride: njk, md
 order: 1
 open: true
 draft: false
-codepen: true
 ---
 <!-- based on https://11ty.rocks/posts/eleventy-templating-static-code-demos/ -->
 

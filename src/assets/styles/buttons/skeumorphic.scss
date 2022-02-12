@@ -28,6 +28,17 @@ url: https://codepen.io/vladracoare/pen/jOPmMap
       }
     }
   }
+  &:disabled {
+    cursor: not-allowed;
+    box-shadow: none;
+    .skeumorphic__content {
+      box-shadow: none;
+      .skeumorphic__text,
+      .skeumorphic__icon {
+        transform: translate3d(0px, -2px, 0px);
+      }
+    }
+  }
   &__content {
     position: relative;
     display: grid;
@@ -53,12 +64,12 @@ url: https://codepen.io/vladracoare/pen/jOPmMap
     grid-column: 4;
     align-self: start;
     justify-self: end;
-    width: 32px;
-    height: 32px;
+    width: 10px;
+    height: 10px;
     transition: 0.13s ease-in-out;
     svg {
-      width: 32px;
-      height: 32px;
+      width: 10px;
+      height: 10px;
       fill: #aaaaaa;
     }
   }
@@ -80,19 +91,5 @@ url: https://codepen.io/vladracoare/pen/jOPmMap
     -moz-background-clip: text;
     background-clip: text;
     transition: 0.13s ease-in-out;
-  }
-}
-.credits {
-  margin-top: 24px;
-  &__reference {
-    display: inline-block;
-
-    border-bottom: 1px solid transparent;
-    color: #0099ff;
-    text-decoration: none;
-    transition: ease-in 0.13s;
-    &:hover {
-      border-bottom-color: #0099ff;
-    }
   }
 }

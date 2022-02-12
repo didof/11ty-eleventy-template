@@ -63,4 +63,13 @@ $pink-shadow: #ffe3e2;
       transform: translate3d(0, 0, -1em);
     }
   }
+  &:disabled {
+    cursor: not-allowed;
+    background: $pink;
+    transform: translate(0em, 0.30em);
+    &::before {
+      box-shadow: 0 0 0 2px $pink-border, 0 0 $pink-shadow;
+      transform: translate3d(0, 0, -1em);
+    }
+  }
 }

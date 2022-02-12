@@ -92,11 +92,6 @@
     semver "^7.3.5"
     slugify "^1.6.5"
 
-"@11tyrocks/eleventy-plugin-open-in-codepen@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@11tyrocks/eleventy-plugin-open-in-codepen/-/eleventy-plugin-open-in-codepen-1.0.0.tgz#c26e9c6c36c1004ee896818a63bacd9a9bd87a81"
-  integrity sha512-MyG5+w5sHsB8Oq9BmXiZFDnewwaqcaaXSmr7TQcO4PL+9kbceferFwD30qsyQs1LXGU4AetnRDyc4Uzm4Ps1qg==
-
 "@babel/code-frame@^7.0.0":
   version "7.16.7"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.16.7.tgz#44416b6bd7624b998f5b1af5d470856c40138789"

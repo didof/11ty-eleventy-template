@@ -6,24 +6,22 @@ templateEngineOverride: njk, md
 
 # Playground
 
+{% minimal_3d 'btn_toggle' %}
+    toggle disable
+{% endminimal_3d %}
+
 <ul class="w-full min-h-screen flex flex-col items-center gap-8">
 
 <li class="w-full row">
-{% minimal_3d %}
+{% minimal_3d 'minimal_3d' %}
     minimal_3d
 {% endminimal_3d %}
-
-```html
-<button class="minimal_3d">didof</button>
-```
 </li>
 
 <li class="w-full row">
-{% skeu %}
+{% skeu 'skeu'%}
     skeu
 {% endskeu %}
 </li>
 
-
-    
 </ul>

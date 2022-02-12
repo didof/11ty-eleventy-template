@@ -65,6 +65,6 @@ That's cool. Can be useful.
 
 {% image "images/smiley-didof.jpg" | url, 'A smiling didof' %}
 
-test
-
-{{ collections.posts }}
+{% skeu %}
+skeu
+{% endskeu %}

@@ -22,3 +22,7 @@ module.exports = {
     })
   },
 }
+
+module.exports.attrs = function attrs({ type = 'submit', id }) {
+  return `type="${type}" ${id ? `id=${id}` : ''}`
+}
