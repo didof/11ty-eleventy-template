@@ -1,10 +1,8 @@
 ---
 title: Playground
 layout: layouts/base.njk
-templateEngineOverride: njk, md
+templateEngineOverride: njk
 ---
-
-# Playground
 
 {% minimal_3d 'btn_toggle' %}
     toggle disable
@@ -12,16 +10,16 @@ templateEngineOverride: njk, md
 
 <ul class="w-full min-h-screen flex flex-col items-center gap-8">
 
-<li class="w-full row">
-{% minimal_3d 'minimal_3d' %}
+    <li class="w-full row">
+        {% minimal_3d 'minimal_3d' %}
     minimal_3d
 {% endminimal_3d %}
-</li>
+    </li>
 
-<li class="w-full row">
-{% skeu 'skeu'%}
+    <li class="w-full row">
+        {% skeu 'skeu'%}
     skeu
 {% endskeu %}
-</li>
+    </li>
 
 </ul>

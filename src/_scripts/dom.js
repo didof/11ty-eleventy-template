@@ -1,25 +1,25 @@
 const memoized = new Map()
 
-export const toggle = {
+window.$toggle = {
   disable(id) {
-    btn(id).toggleAttribute('disabled')
+    el(id).toggleAttribute('disabled')
   },
 }
 
-export const listen = {
+window.$listen = {
   onclick(id, cb) {
-    btn(id).addEventListener('click', cb)
+    el(id).addEventListener('click', cb)
   },
 }
 
-function btn(id) {
-  let button
-  if (!(button = memoized.get(id))) {
-    button = document.getElementById(id)
-    if (!button) return notFound(id)
-    memoized.set(id, button)
+function el(id) {
+  let el
+  if (!(el = memoized.get(id))) {
+    el = document.getElementById(id)
+    if (!el) return notFound(id)
+    memoized.set(id, el)
   }
-  return button
+  return el
 }
 
 function notFound(id) {
