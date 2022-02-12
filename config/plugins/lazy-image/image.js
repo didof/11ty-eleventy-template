@@ -53,7 +53,7 @@ module.exports = async function image(
 
   // Chain class names w/ the classNames package; optional
   const picture = `
-<picture class="${classNames('lazy-picture', className)}">
+<picture class="${classNames('lazy-image', className)}">
   ${Object.values(imageMetadata)
     // Map each format to the source HTML markup
     .map(formatEntries => {

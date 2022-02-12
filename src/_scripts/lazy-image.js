@@ -1,6 +1,6 @@
 import observe from './utils/intersectionObserver.js'
 
-const lazyPictures = document.querySelectorAll(`.lazy-picture`)
+const lazyPictures = document.querySelectorAll(`.lazy-image`)
 
 observe(lazyPictures, pictureElement => {
   const img = pictureElement.querySelector('img')

@@ -3,6 +3,6 @@
   transition: filter 0.3s ease-in;
 }
 
-.lazy-picture[data-loaded] .lazy-img {
+.lazy-image[data-loaded] .lazy-img {
   filter: unset;
 }
