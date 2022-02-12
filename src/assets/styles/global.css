@@ -6,4 +6,12 @@
 
 html {
   scroll-behavior: smooth;
+  font-family: Inter UI, sans-serif;
+}
+
+@font-face {
+  font-family: 'Inter UI';
+  font-weight: 100 900;
+  font-style: oblique 0deg 10deg;
+  src: url('/assets/fonts/Inter-3.19.var.woff2') format('woff2');
 }

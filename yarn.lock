@@ -1384,6 +1384,11 @@ electron-to-chromium@^1.4.17:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.65.tgz#c0820db06e268e0a2fd4dbce38fb5376d38ca449"
   integrity sha512-0/d8Skk8sW3FxXP0Dd6MnBlrwx7Qo9cqQec3BlIAlvKnrmS3pHsIbaroEi+nd0kZkGpQ6apMEre7xndzjlEnLw==
 
+eleventy-google-fonts@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/eleventy-google-fonts/-/eleventy-google-fonts-0.1.0.tgz#adf5f2d91d647b1c1feb2343e940fbb741b29b82"
+  integrity sha512-icaJjAPEvGMFvbdogLt+gZXor8JQRh6+ZA9v1yxx/fZ2/d+XPYDZIG1HYmvSqScN4AMx3f1Vq+RQ6iE8my6p8Q==
+
 eleventy-plugin-time-to-read@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/eleventy-plugin-time-to-read/-/eleventy-plugin-time-to-read-1.1.1.tgz#a049954b480f0b3d1a02b20a9fa4217a099a7953"
@@ -2486,6 +2491,17 @@ linkedom@^0.13.2:
   version "0.13.2"
   resolved "https://registry.yarnpkg.com/linkedom/-/linkedom-0.13.2.tgz#455187a4eb9a00f41e8a736c5d362ea7e1cafc05"
   integrity sha512-lQPdDnml1Rl/T8QW3j10jJ37LMRcZqryy5kwHDIw9AYMabeE4P6kMp2mqJXWjjeXxJ4ebJC05Qx9Xxs4jWhNMw==
+  dependencies:
+    css-select "^4.2.1"
+    cssom "^0.5.0"
+    html-escaper "^3.0.3"
+    htmlparser2 "^7.2.0"
+    uhyphen "^0.1.0"
+
+linkedom@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/linkedom/-/linkedom-0.14.0.tgz#42cc3dbdfb521d5be397f91d3e2c6ff75dc2ab31"
+  integrity sha512-N5s9tHNdENbTApXc8djgIa898dkTGzWjChkbyU98Vlzi3dAxZ3KArydp8XQ0X1o1uZxx9b3HlXklRkaYCFS53A==
   dependencies:
     css-select "^4.2.1"
     cssom "^0.5.0"

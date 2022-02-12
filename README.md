@@ -21,7 +21,7 @@ This is my personal 11ty template. Enjoy!
 ### ToRead
 - [ ] [eleventy-high-performance-blog](https://github.com/google/eleventy-high-performance-blog)
 - [x] [eleventy-image-lazy-loading](https://www.aleksandrhovhannisyan.com/blog/eleventy-image-lazy-loading/)
-  - [ ] [noscript-lazy-load](https://eszter.space/noscript-lazy-load/)
+- [ ] [noscript-lazy-load](https://eszter.space/noscript-lazy-load/)
 - [ ] [static-site-comments-github-issues](https://www.aleksandrhovhannisyan.com/blog/static-site-comments-github-issues/)
 - [ ] [optimizing-images-for-the-web](https://www.aleksandrhovhannisyan.com/blog/optimizing-images-for-the-web/)
 - [ ] [Understanding image optimization feat. 11ty image with Ben Holmes](https://www.youtube.com/watch?v=7n_QLWs1Yrw)
@@ -29,6 +29,6 @@ This is my personal 11ty template. Enjoy!
 - [ ] [priority hints](https://web.dev/priority-hints/)
 - [ ] [web component generator](https://11ty-web-component-generator.netlify.app/)
 - [ ] [quick tips](https://www.11ty.dev/docs/quicktips/)
-- [ ] [custom taxonomies](https://www.webstoemp.com/blog/basic-custom-taxonomies-with-eleventy/)
+- [x] [custom taxonomies](https://www.webstoemp.com/blog/basic-custom-taxonomies-with-eleventy/)
 - [ ] [data cascade](https://benmyers.dev/blog/eleventy-data-cascade/)
 - [ ] [official plugins](https://www.11ty.dev/docs/plugins/)

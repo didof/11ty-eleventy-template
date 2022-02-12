@@ -1,3 +1,4 @@
+// @ts-nocheck
 const fs = require('fs')
 
 const outAllDraft = filterOutByMeta('draft')
@@ -7,6 +8,8 @@ const cardShortcode = require('./src/plugins/card.js')
 
 module.exports = conf => {
   conf.addPassthroughCopy({ './src/assets/styles': '/assets/styles' })
+  conf.addPassthroughCopy({ './src/assets/images': '/assets/images' })
+  conf.addPassthroughCopy({ './src/assets/fonts': '/assets/fonts' })
   conf.addWatchTarget('./src/assets/')
   conf.addWatchTarget('./src/utils/')
   conf.addWatchTarget('./tailwind.config.js')
@@ -18,11 +21,6 @@ module.exports = conf => {
 
   conf.addPlugin(require('@11ty/eleventy-plugin-syntaxhighlight'))
   conf.addPlugin(require('@11ty/eleventy-navigation'))
-  conf.addPlugin(require('./config/plugins/blog'))
-  conf.addPlugin(require('./config/plugins/buttons'))
-  conf.addPlugin(require('./config/plugins/filters'))
-  conf.addPlugin(require('./config/plugins/lazy-image'))
-  conf.addPlugin(require('./config/plugins/cards'))
   conf.addPlugin(require('eleventy-plugin-time-to-read'), {
     speed: '1000 characters per minute',
     language: 'en',
@@ -37,6 +35,13 @@ module.exports = conf => {
       return `${emoji} ${data.minutes} ${data.speed.interval} reading`
     },
   })
+  conf.addPlugin(require('./config/plugins/blog'))
+  conf.addPlugin(require('./config/plugins/buttons'))
+  conf.addPlugin(require('./config/plugins/filters'))
+  conf.addPlugin(require('./config/plugins/lazy-image'))
+  conf.addPlugin(require('./config/plugins/cards'))
+  conf.addPlugin(require('./config/plugins/external-links'))
+  conf.addPlugin(require('eleventy-google-fonts'))
 
   conf.setLibrary('md', require('./config/libraries/md.js')(conf))
 

@@ -13,7 +13,12 @@
         <link rel="stylesheet" type="text/css" href="/assets/styles/global.css?v={% version %}"/>
         <link rel="stylesheet" type="text/css" href="/assets/styles/lazy-picture.css?v={% version %}"/>
 
-        {# Comment/remove the css you are not using in the project #}
+        <link rel="preconnect" href="/" crossorigin>
+
+        {# Comment out/remove the assets you are not using in the project #}
+
+        {# Fonts #}
+        <link rel="preload" href="/assets/fonts/Inter-3.19.var.woff2" as="font" type="font/woff2" crossorigin>
 
         {# Buttons #}
         <link rel="stylesheet" type="text/css" href="/assets/styles/buttons/minimal_3d.css?v={% version %}"/>
@@ -22,6 +27,7 @@
         {# Cards #}
         <link rel="stylesheet" type="text/css" href="/assets/styles/cards/ec.css?v={% version %}"/>
 
+        {# Noscript compatibility for image shortcode #}
         <noscript>
             <style>
                 noscript {
@@ -34,6 +40,7 @@
         </noscript>
 
         <script defer src="/assets/main.js?v={% version %}"></script>
+
         {% block head %}{% endblock %}
     </head>
     <body class="min-h-screen flex flex-col">
