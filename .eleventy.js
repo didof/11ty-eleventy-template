@@ -3,18 +3,10 @@ const fs = require('fs')
 /** LIBRARIES */
 const mdLibrary = require('./config/libraries/md.js')
 
-/** PLUGINS */
-const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
-const pluginNavigation = require('@11ty/eleventy-navigation')
 const pluginBlog = require('./config/plugins/blog.plugin.js')
-const pluginButtons = require('./config/plugins/buttons')
-const pluginFilters = require('./config/plugins/filters')
 // const pluginRss = require('@11ty/eleventy-plugin-rss')
 
-/** TRANSFORMERS */
 const htmlMinifierTransformer = require('./config/transformers/html-minifier.js')
-
-/** FILTERS */
 
 /** HELPERS */
 const outAllDraft = filterOutByMeta('draft')
@@ -23,8 +15,6 @@ const byOrder = cardinalSortByMeta('order')
 /** SHORTCODES */
 const cardShortcode = require('./src/plugins/card.js')
 const imageShortcode = require('./src/plugins/image.js')
-
-const { DateTime } = require('luxon')
 
 module.exports = conf => {
   conf.addPassthroughCopy({ './src/assets/styles': '/assets/styles' })
@@ -40,11 +30,12 @@ module.exports = conf => {
     collection.getFilteredByTag('snippets').filter(outAllDraft).sort(byOrder)
   )
 
-  conf.addPlugin(pluginSyntaxHighlight)
-  conf.addPlugin(pluginNavigation)
+  conf.addPlugin(require('@11ty/eleventy-plugin-syntaxhighlight'))
+  conf.addPlugin(require('@11ty/eleventy-navigation'))
   conf.addPlugin(pluginBlog)
-  conf.addPlugin(pluginButtons)
-  conf.addPlugin(pluginFilters)
+  conf.addPlugin(require('./config/plugins/buttons'))
+  conf.addPlugin(require('./config/plugins/filters'))
+  conf.addPlugin(require('./config/plugins/lazy-image'))
   // conf.addPlugin(pluginRss)
 
   conf.setLibrary('md', mdLibrary(conf))
@@ -77,8 +68,8 @@ module.exports = conf => {
 
   return {
     templateFormats: ['md', 'njk', 'html', 'liquid'],
-    markdownTemplateEngine: "njk",
-    htmlTemplateEngine: "njk",
+    markdownTemplateEngine: 'njk',
+    htmlTemplateEngine: 'njk',
     // pathPrefix: "/",
     dir: {
       input: 'src',
