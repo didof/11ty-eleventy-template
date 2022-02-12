@@ -1,32 +1,35 @@
 // @ts-nocheck
 const fs = require('fs')
 
+const eleventyPluginTimeToReadOptions = {
+  speed: '1000 characters per minute',
+  language: 'en',
+  style: 'long',
+  type: 'unit',
+  hours: 'auto',
+  minutes: true,
+  seconds: false,
+  digits: 1,
+  output: function (data) {
+    const emoji =
+      [null, '🐜', '🐤', '🐇', null, null, '🐘'][data.minutes] || '🐘'
+    return `${emoji} ${data.minutes} ${data.speed.interval} reading`
+  },
+}
+
 module.exports = conf => {
   conf.addPassthroughCopy({ './src/assets': '/assets' })
   conf.addWatchTarget('./src/assets/')
   conf.addWatchTarget('./src/utils/')
   conf.addWatchTarget('./tailwind.config.js')
 
-  conf.addCollection('nav', collection => collection.getAll())
-
   conf.addPlugin(require('@11ty/eleventy-plugin-syntaxhighlight'))
   conf.addPlugin(require('@11ty/eleventy-navigation'))
   conf.addPlugin(require('eleventy-google-fonts'))
-  conf.addPlugin(require('eleventy-plugin-time-to-read'), {
-    speed: '1000 characters per minute',
-    language: 'en',
-    style: 'long',
-    type: 'unit',
-    hours: 'auto',
-    minutes: true,
-    seconds: false,
-    digits: 1,
-    output: function (data) {
-      const emoji =
-        [null, '🐜', '🐤', '🐇', null, null, '🐘'][data.minutes] || '🐘'
-      return `${emoji} ${data.minutes} ${data.speed.interval} reading`
-    },
-  })
+  conf.addPlugin(
+    require('eleventy-plugin-time-to-read'),
+    eleventyPluginTimeToReadOptions
+  )
   conf.addPlugin(require('./config/plugins/blog'))
   conf.addPlugin(require('./config/plugins/buttons'))
   conf.addPlugin(require('./config/plugins/filters'))
