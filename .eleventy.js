@@ -4,8 +4,6 @@ const fs = require('fs')
 const outAllDraft = filterOutByMeta('draft')
 const byOrder = cardinalSortByMeta('order')
 
-const cardShortcode = require('./src/plugins/card.js')
-
 module.exports = conf => {
   conf.addPassthroughCopy({ './src/assets/styles': '/assets/styles' })
   conf.addPassthroughCopy({ './src/assets/images': '/assets/images' })
@@ -46,7 +44,6 @@ module.exports = conf => {
   conf.setLibrary('md', require('./config/libraries/md.js')(conf))
 
   conf.addShortcode('version', () => String(new Date()))
-  conf.addPairedShortcode('card', cardShortcode)
 
   conf.addTransform(
     'htmlmin',
