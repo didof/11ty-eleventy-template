@@ -1,7 +1,7 @@
 {%- from "system/component.njk" import component -%}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" domain="{{ metadata.domain }}">
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -57,7 +57,7 @@
     </head>
     <body class="min-h-screen flex flex-col">
 
-        <main class="flex-grow max-w-4xl w-3/4 mx-auto flex flex-col gap-4">
+        <main class="flex-grow max-w-5xl w-3/4 mx-auto flex flex-col gap-4">
             {% block content %}
                 {{ content | safe }}
             {% endblock %}
