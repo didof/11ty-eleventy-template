@@ -1384,6 +1384,11 @@ electron-to-chromium@^1.4.17:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.65.tgz#c0820db06e268e0a2fd4dbce38fb5376d38ca449"
   integrity sha512-0/d8Skk8sW3FxXP0Dd6MnBlrwx7Qo9cqQec3BlIAlvKnrmS3pHsIbaroEi+nd0kZkGpQ6apMEre7xndzjlEnLw==
 
+eleventy-plugin-time-to-read@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/eleventy-plugin-time-to-read/-/eleventy-plugin-time-to-read-1.1.1.tgz#a049954b480f0b3d1a02b20a9fa4217a099a7953"
+  integrity sha512-maePkFIo+LSAsYOCBKlr0x2uGWOHIvyK9/YB7TVpxCSrUeJQU4pyMOdxkrI8POe7k0ooDI8PpNQNVAxdtJPDSA==
+
 emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"

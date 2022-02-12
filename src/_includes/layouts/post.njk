@@ -10,6 +10,8 @@ layout: layouts/base.njk
 {% block article %}
     <article class="prose lg:prose-xl prose-a:text-secondary flex flex-col gap-2">
 
+       {{ content | timeToRead }}
+
         {{ content | safe }}
 
         <footer>

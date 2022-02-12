@@ -23,6 +23,20 @@ module.exports = conf => {
   conf.addPlugin(require('./config/plugins/filters'))
   conf.addPlugin(require('./config/plugins/lazy-image'))
   conf.addPlugin(require('./config/plugins/cards'))
+  conf.addPlugin(require('eleventy-plugin-time-to-read'), {
+    speed: '1000 characters per minute',
+    language: 'en',
+    style: 'long',
+    type: 'unit',
+    hours: 'auto',
+    minutes: true,
+    seconds: false,
+    digits: 1,
+    output: function (data) {
+      const emoji = [null, '🐜', '🐤', '🐇', '🐕', '🐘'][data.minutes]
+      return `${emoji} ${data.minutes} ${data.speed.interval} reading`
+    },
+  })
 
   conf.setLibrary('md', require('./config/libraries/md.js')(conf))
 

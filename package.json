@@ -32,6 +32,7 @@
     "axios": "^0.21.4",
     "classnames": "^2.3.1",
     "css-loader": "^6.6.0",
+    "eleventy-plugin-time-to-read": "^1.1.1",
     "html-minifier": "^4.0.0",
     "internal-ip": "^7.0.0",
     "lodash": "^4.17.21",
