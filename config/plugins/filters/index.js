@@ -4,6 +4,7 @@ const defaultOptions = {
   readableDate: true,
   htmlDateString: true,
   sitemapDateTimeString: true,
+  lastModifiedDate: true,
 }
 
 module.exports = {
