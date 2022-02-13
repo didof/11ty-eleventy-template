@@ -4,7 +4,6 @@ This is my personal 11ty template. Enjoy!
 
 ## ToDo
 - og, twitter meta
-- robots.txt
 
 ### ToRead
 - [ ] [eleventy-high-performance-blog](https://github.com/google/eleventy-high-performance-blog)
