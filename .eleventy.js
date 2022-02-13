@@ -43,6 +43,7 @@ module.exports = conf => {
     require('eleventy-plugin-time-to-read'),
     eleventyPluginTimeToReadOptions
   )
+  conf.addPlugin(require('eleventy-plugin-embed-everything'))
   conf.addPlugin(require('./config/plugins/blog'))
   conf.addPlugin(require('./config/plugins/buttons'))
   conf.addPlugin(require('./config/plugins/filters'))
