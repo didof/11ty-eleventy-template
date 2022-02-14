@@ -1,3 +1,8 @@
+const fs = require('fs')
+const { promisify } = require('util')
+const stat = promisify(fs.stat)
+const execFile = promisify(require('child_process').execFile)
+
 async function lastModifiedDate(filename) {
   try {
     const { stdout } = await execFile('git', [
