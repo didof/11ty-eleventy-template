@@ -7,7 +7,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta name="theme-color" content="#f9c412">
         <meta name="robots" content="max-snippet:-1, max-image-preview: large, max-video-preview: -1">
-        <title>{{ title }}</title>
+
+        <title>{{ renderData.title or title or metadata.title | escape }}</title>
+        <meta property="og:title" content="{{ renderData.title or title or metadata.title | escape  }}">
+        {% set desc = renderData.description or description %}
+        {% if not desc %}
+            {% set desc = content | striptags | truncate(140) %}
+        {% endif %}
+        {% if desc %}
+            <meta name="description" content="{{ desc | escape  }}">
+            <meta property="og:description" content="{{ desc | escape }}">
+        {% endif %}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@{{ metadata.author.twitterHandle }}">
+        <meta name="twitter:creator" content="@{{ metadata.author.twitterHandle }}">
+        {% if image %}
+            <meta property="og:image" content="{{ image | absoluteUrl(metadata.url) }}">
+        {% endif %}
 
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
