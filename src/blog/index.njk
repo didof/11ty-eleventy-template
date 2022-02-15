@@ -1,0 +1,42 @@
+---
+title: Blog
+layout: layouts/base.njk
+templateEngineOverride: njk
+permalink: /blog/
+---
+
+# Blog
+
+## Categories
+
+<div>
+    <ul class="list-reset flex items-center gap-4">
+        {% for category in collections.blogCategories %}
+
+            <li>
+                <h2>
+                    <a href="{{ category.slug | categoryUrl }}">{{category.value | escape | safe}}</a>
+                </h2>
+            </li>
+
+        {% endfor %}
+    </ul>
+</div>
+
+## Tags
+
+<div>
+    <ul class="list-reset flex items-center gap-4">
+
+        {% for tag in collections.blogTags %}
+
+            <li>
+                <h2>
+                    <a href="{{tag.slug | tagUrl }}">{{tag.value | escape | safe}}</a>
+                </h2>
+            </li>
+
+        {% endfor %}
+
+    </ul>
+</div>

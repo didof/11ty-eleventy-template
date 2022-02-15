@@ -7,6 +7,7 @@ const defaultOptions = {
   lastModifiedDate: true,
 }
 
+// register as addNunjucksAsyncFilter
 module.exports = {
   configFunction: function (conf, options = defaultOptions) {
     options = Object.assign(defaultOptions, options)

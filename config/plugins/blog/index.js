@@ -79,6 +79,14 @@ module.exports = {
 
     conf.setLibrary('md', require('./md.js')(conf))
 
+    conf.addFilter('categoryUrl', string => {
+      return `categories/${string}`
+    })
+
+    conf.addFilter('tagUrl', string => {
+      return `tags/${string}`
+    })
+
     conf.addPlugin(pluginTOC)
   },
 }

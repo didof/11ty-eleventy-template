@@ -30,6 +30,7 @@ module.exports = conf => {
   conf.addWatchTarget('./src/assets/')
   conf.addWatchTarget('./src/utils/')
   conf.addWatchTarget('./tailwind.config.js')
+  conf.addWatchTarget('./config.js')
 
   conf.addPlugin(require('@11ty/eleventy-plugin-syntaxhighlight'))
   conf.addPlugin(require('@11ty/eleventy-navigation'))
@@ -80,8 +81,8 @@ module.exports = conf => {
 
   return {
     templateFormats: ['md', 'njk', 'html', 'liquid'],
-    markdownTemplateEngine: 'njk',
-    htmlTemplateEngine: 'njk',
+    // markdownTemplateEngine: 'njk',
+    // htmlTemplateEngine: 'njk',
     // pathPrefix: "/",
     dir: {
       input: 'src',
