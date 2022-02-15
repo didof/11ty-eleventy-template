@@ -9,9 +9,16 @@ html {
   font-family: Inter UI, sans-serif;
 }
 
+/* See /assets/fonts/README.md */
 @font-face {
   font-family: 'Inter UI';
   font-weight: 100 900;
   font-style: oblique 0deg 10deg;
   src: url('/assets/fonts/Inter-3.19.var.woff2') format('woff2');
+}
+
+/* Prevent Layout Shifting - just ensure the <img> has an height attribute */
+img {
+  max-width: 100%;
+  height: auto;
 }
