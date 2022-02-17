@@ -1,7 +1,6 @@
 ---
 title: Playground
-layout: layouts/base.njk
-templateEngineOverride: njk
+layout: layouts/base.html
 ---
 
 {% minimal_3d 'btn_toggle' %}
@@ -23,3 +22,25 @@ templateEngineOverride: njk
     </li>
 
 </ul>
+
+## Image
+
+{% image "assets/images/smiley-didof.jpg", "smiley didof" %}
+
+## Cards
+
+{% cardEc 'card_expandable_header' %}
+
+Wallet
+
+{% endcardEc %}
+
+### Buttons
+
+{% skeu %}
+skeu
+{% endskeu %}
+
+### Embeds
+
+https://www.youtube.com/watch?v=dQw4w9WgXcQ

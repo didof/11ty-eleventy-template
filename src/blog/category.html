@@ -1,23 +1,16 @@
 ---
-title: Categories
-layout: layouts/base.njk
-templateEngineOverride: njk
+title: Category
+layout: layouts/base.html
 pagination:
     data: collections.blogCategories
     size: 1
     alias: category
 permalink: /blog/categories/{{ category.slug }}/
+renderData:
+  title: "{{ category.value }}"
 ---
 
 {%- from "system/component.njk" import component -%}
-
-{# {% set test %}
-
-Blog category: {{ category.value }}
-
-{% endset %} #}
-
-{% set heading = 'test' %}
 
 <section class="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
 

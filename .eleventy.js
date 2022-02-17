@@ -50,6 +50,7 @@ module.exports = conf => {
   conf.addPlugin(require('./config/plugins/filters'))
   conf.addPlugin(require('./config/plugins/lazy-image'))
   conf.addPlugin(require('./config/plugins/cards'))
+  conf.addPlugin(require('./config/plugins/anchors'))
   conf.addPlugin(require('./config/plugins/external-links'))
 
   conf.addShortcode('version', now)
@@ -81,8 +82,9 @@ module.exports = conf => {
 
   return {
     templateFormats: ['md', 'njk', 'html', 'liquid'],
-    // markdownTemplateEngine: 'njk',
-    // htmlTemplateEngine: 'njk',
+    markdownTemplateEngine: 'njk',
+    dataTemplateEngine: 'njk',
+    htmlTemplateEngine: 'njk',
     // pathPrefix: "/",
     dir: {
       input: 'src',

@@ -55,6 +55,11 @@
         {# Scrollbars #}
         <link rel="stylesheet" type="text/css" href="/assets/styles/scrollbars/simple-scrollbar.css?v={% version %}"/>
 
+        {# Anchors #}
+        <link rel="stylesheet" type="text/css" href="/assets/styles/anchors/spring.css?v={% version %}"/>
+        <link rel="stylesheet" type="text/css" href="/assets/styles/anchors/slimArrow.css?v={% version %}"/>
+        <link rel="stylesheet" type="text/css" href="/assets/styles/anchors/double.css?v={% version %}"/>
+
         {# Noscript compatibility for image shortcode #}
         <noscript>
             <style>
@@ -75,7 +80,9 @@
 
         <main class="flex-grow max-w-5xl w-3/4 mx-auto flex flex-col gap-4">
             {% block content %}
-                {{ content | safe }}
+                <p>
+                    This is shown if content is not populated
+                </p>
             {% endblock %}
         </main>
 
