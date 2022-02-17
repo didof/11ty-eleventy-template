@@ -52,6 +52,7 @@ module.exports = conf => {
   conf.addPlugin(require('./config/plugins/cards'))
   conf.addPlugin(require('./config/plugins/anchors'))
   conf.addPlugin(require('./config/plugins/external-links'))
+  conf.addPlugin(require('./config/plugins/footers'))
 
   conf.addShortcode('version', now)
 

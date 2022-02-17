@@ -60,6 +60,9 @@
         <link rel="stylesheet" type="text/css" href="/assets/styles/anchors/slimArrow.css?v={% version %}"/>
         <link rel="stylesheet" type="text/css" href="/assets/styles/anchors/double.css?v={% version %}"/>
 
+        {# Footers #}
+        <link rel="stylesheet" type="text/css" href="/assets/styles/footers/goey.css?v={% version %}"/>
+
         {# Noscript compatibility for image shortcode #}
         <noscript>
             <style>
@@ -76,7 +79,7 @@
 
         {% block head %}{% endblock %}
     </head>
-    <body class="min-h-screen flex flex-col">
+    <body class="min-h-screen flex flex-col space-between overflow-hidden">
 
         <main class="flex-grow max-w-5xl w-3/4 mx-auto flex flex-col gap-4">
             {% block content %}
@@ -86,6 +89,12 @@
             {% endblock %}
         </main>
 
-        {% include "components/footer.njk" %}
+        {% footer__goey %}
+
+        <div class="w-full flex justify-center items-center">didof</div>
+
+        {% endfooter__goey %}
+
+        {# {% include "components/footer.njk" %} #}
     </body>
 </html>

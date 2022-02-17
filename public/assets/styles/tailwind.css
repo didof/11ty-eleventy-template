@@ -1174,6 +1174,10 @@ h2 {
   gap: 0.25rem;
 }
 
+.overflow-hidden {
+  overflow: hidden;
+}
+
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
